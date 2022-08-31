@@ -1,0 +1,27 @@
+import java.util.Scanner;
+// Used to import Scanner.
+// Can also you 'import java.util.*;' to import all tools of Java.
+
+
+public class MyVersionOf_HelloWorld {
+
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+        // Used to input Data from user at runtime.
+        // Requires you to import the Scanner utility (done on line 12).
+        
+        System.out.println("Why couldn't you work the first time?");
+        System.out.println("You're making me not like you-");
+        System.out.println("I like Java, but you, Netbeans-...");
+        System.out.println("You're problamatic.");
+        System.out.println("");
+    
+        
+        System.out.println("Please, tell me your opinion about Netbeans: ");
+        String YourOpinion = input.nextLine();
+        System.out.println("If you think it's bad, I agree. If you think it's good, you're wrong.");
+        System.out.println(YourOpinion);
+    }
+   
+}
