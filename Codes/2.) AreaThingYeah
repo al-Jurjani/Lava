@@ -1,0 +1,22 @@
+public class AreaThingYeah {
+
+    public static void main(String[] args) {
+        
+        // Honestly I don't know just find the Area man Don't worry about it.
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("Enter the length of Base 1, Base 2, and the Height: ");
+        System.out.print("Base 1: ");
+        int Base1 = input.nextInt();
+        System.out.print("Base 2: ");
+        int Base2 = input.nextInt();
+        System.out.print("Height: ");
+        int Height = input.nextInt();
+        
+        float area = (Base1 + Base2) / Height;
+        System.out.println("The Area of the shape with the dimensions you have mentioned is: " + area);
+                
+    }
+    
+}
