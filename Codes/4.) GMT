@@ -1,0 +1,15 @@
+public class GMTTime {
+
+    public static void main(String[] args) {
+        
+        long Tmili = System.currentTimeMillis();
+        long Tsec = Tmili/1000;
+        long sec = Tsec % 60;
+        long Thour = Tmili/3600000;
+        long hour = Thour % 24;
+        long Tmin = Tmili/60000;
+        long min = Tmin % 60;
+        System.out.println(hour + ":" + min + ":" + sec);
+    }
+    
+}
