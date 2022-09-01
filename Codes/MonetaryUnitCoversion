@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class MonetaryUnitConversion {
+
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.print("Enter the money you have: ");
+        double total = input.nextDouble();
+        
+        int pennies = (int)(total*100);
+        
+        int dollar = (int) pennies/100;
+        pennies = pennies - (dollar*100);
+        
+        int quarter = (int) pennies/25;
+        pennies = pennies - (quarter*25);
+        
+        int dimes = (int) pennies/10;
+        pennies = pennies - (dimes*10);
+        
+        int nickel = (int) pennies/5;
+        pennies = pennies - (nickel*5);
+        
+        System.out.println(dollar + ":" + quarter + ":" + dimes + 
+                ":" + nickel + ":" + pennies);
+        
+    }
+    
+}
