@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class ChecksumDigitCalculator {
+
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("Enter the 9 digit ISBN code: ");
+        int code = input.nextInt();
+        
+        int d2 = code % 10;      
+        int d3 = (code % 100) / 10;        
+        int d4 = (code % 1000) / 100;       
+        int d5 = (code % 10000) / 1000;       
+        int d6 = (code % 100000) / 10000;       
+        int d7 = (code % 1000000) / 100000;        
+        int d8 = (code % 10000000) / 1000000;      
+        int d9 = (code % 100000000) / 10000000;
+        int d10 = (code & 1000000000) / 100000000;
+        int d1 = (d2*2 + d3*3 + d4*4 + d5*5 + d6*6 + d7*7 + d8*8 + d9*9 + d10*10) * 10 % 11;
+        
+        if (d1 == 10) {
+             System.out.println("Your checkdigit is: X" );
+             System.out.println("The complete ISBN code is: " + code + "X");
+        } else {
+            System.out.println("Your checkdigit is: " + d1);
+            System.out.println("Your complete ISBN code is: " + code + d1);
+        }
+    }
+    
+}
