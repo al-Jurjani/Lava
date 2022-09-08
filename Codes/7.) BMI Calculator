@@ -1,0 +1,28 @@
+import java.util.*;
+
+public class BMICaculaotr {
+
+    
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        
+        System.out.print("Enter your weight: ");
+        float weight = input.nextFloat();
+        System.out.print("Enter your height: ");
+        float height = input.nextFloat();
+        double bmi = weight / (Math.pow(height, 2));
+        
+        if (bmi<18.5) {
+            System.out.println("You are underweight.");
+        } else if (bmi >= 18.5 && bmi < 25.0) {
+                    System.out.println("You are normal.");
+                    }
+          else if (bmi >= 25.0 && bmi <30.0) {
+              System.out.println("You are overweight.");
+          }
+          else {
+              System.out.println("You are obese.");
+        }
+    }
+    
+}
