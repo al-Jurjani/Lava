@@ -1,0 +1,29 @@
+import java.util.*;
+
+public class PalindromeChecker4Digits {
+
+    
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("Enter a 4 digit number: ");
+        // I would make a while loop to make sure the user entered a 4 digit number, but for this code I am assuming the user will add a 4 digit number.
+        int original = input.nextInt();
+        
+        int d1 = original / 1000;
+        int d2 = (original % 1000) / 100;
+        int d3 = original % 100 / 10;
+        int d4 = original % 10;
+        
+        int reverse = (d1) + (d2*10) + (d3*100) + (d4*1000);
+        
+        if (original == reverse) {
+            System.out.println("Your number is a palindrome!");
+        }
+        else {
+            System.out.println("Your number is not a palindrome.");
+        }
+    }
+    
+}
