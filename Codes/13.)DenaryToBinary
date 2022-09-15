@@ -1,0 +1,33 @@
+package denarytobinary;
+
+// Zuhair Farhan
+// 27100
+
+import java.util.*;
+
+public class DenaryToBinary {
+
+
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("Enter a denary positive digit: ");
+        int denary = input.nextInt();
+        int binary = 0;
+        int count;
+        
+        for (count = 128;count>=1;count/=2){
+            if (denary/count>0) {
+                binary = binary*10 + 1;
+                denary = denary%count;
+            } else {
+                binary = binary*10;
+            }
+        }
+        
+    
+        System.out.println("Your number in binary is: " + binary);
+           
+}
+}
