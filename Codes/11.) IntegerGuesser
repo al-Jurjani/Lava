@@ -1,0 +1,57 @@
+package numberguesser;
+
+// Zuhair Farhan
+// 27100
+
+import java.util.*;
+
+public class NumberGuesser {
+
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        char con = 'y';
+        
+        while (con=='y') {
+        
+        int random = (int) (Math.random() * 101);
+        
+        System.out.println("");
+        System.out.println("You are guessing a random number! Input your guess, and we'll tell if you're you're number is higher than or lower than the random number.");
+        System.out.println("You have five guesses!");
+        
+        int count = 0;
+        int guess;
+        
+        for (; count<5;count++) {
+            System.out.println("Enter your guess: ");
+            guess = input.nextInt();
+            if (guess==random) {
+                System.out.println("");
+                System.out.println("You have guessed the number!");
+                break;
+            } 
+            else if (guess>random && count!=4) {
+                System.out.println("");
+                System.out.println("Try again, your guess was LARGER than the actual number.");
+            }
+            else if (guess<random && count!=4) {
+                System.out.println("");
+                System.out.println("Try again, your guess was SMALLER than the actual number.");
+            }
+                 
+        }
+        if (count == 5) {
+            System.out.println();
+            System.out.println("Sorry, you have run out of tries!");
+            System.out.println("The number was: " + random);
+        }
+           System.out.println("");
+           System.out.println("Would you like to play again? Press 'y' for yes or 'n' for no.");
+           con = input.next().charAt(0);
+        
+    }
+    }
+    
+}
