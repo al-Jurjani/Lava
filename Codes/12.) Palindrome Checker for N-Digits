@@ -1,0 +1,33 @@
+package palindromecheckerforn.digits;
+
+// Zuhair Farhan
+// 27100
+
+import java.util.*;
+
+public class PalindromeCheckerForNDigits {
+
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("Enter a number: ");
+        int original = input.nextInt();
+        int copyOforiginal = original;
+        int remainder = 0;
+        int reverse=0;
+        
+        while (original != 0) {
+            remainder = original % 10;
+            reverse = reverse*10 + remainder;
+            original = original/10;
+        }
+        
+        if (copyOforiginal==reverse) {
+            System.out.println("Your number is a palindrome!");
+        } else {
+            System.out.println("Your number is not a palindrome.");
+        }
+    }
+    
+}
