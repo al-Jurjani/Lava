@@ -8,7 +8,6 @@ import java.util.*;
 public class RamanujanSTaxi {
 
     public static void main(String[] args) {
-        
         Scanner input = new Scanner(System.in);
         
         System.out.print("Enter a number: ");
@@ -28,10 +27,10 @@ public class RamanujanSTaxi {
         for (count1 = 1; count1<(int)Math.cbrt(number)+1; count1++) {
             
             a = (int) Math.pow(count1, 3);
-            for (count2 = a+1; count2<(int)Math.cbrt(number)+1; count2++) {
+            for (count2 = count1+1; count2<(int)Math.cbrt(number)+1; count2++) {
                 
                 b = (int) Math.pow(count2, 3);
-                for (count3 = a+1; count3<(int)Math.cbrt(number)+1; count3++) {
+                for (count3 = count1+1; count3<(int)Math.cbrt(number)+1; count3++) {
                     
                     c = (int) Math.pow(count3, 3);
                     for (count4 = count3; count4<(int)Math.cbrt(number)+1; count4++) {
@@ -40,7 +39,7 @@ public class RamanujanSTaxi {
                         sum1 = a + b;
                         sum2 = c + d;
                         
-                        if (a != b && a != c && a != b && b != c && b != d && c != d) {
+                        if (a != b && a != c && a != d && b != c && b != d && c != d) {
                             if (sum1 == sum2 && sum1 == number) {
                             System.out.println();
                             System.out.println("The number you entered, " + number +
