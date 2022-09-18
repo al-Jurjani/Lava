@@ -21,25 +21,18 @@ public class RamanujanSTaxi {
         int count1, count2, count3, count4;
         int sum1, sum2;
         int totaloutputs = 0;
-        boolean found = false;
-        int[] valuesoutputted = new int[600];
-        // Using an array to remove the duplication issue.
-        // There probably is a better fix to this problem, but this is the one I can think of.
-        // Even this isn't a complete fix however, since it is possible that, depending on the input by the user,
-        // the total number of unique outputs exceeds 600, since an int value can store well over the 600th unique taxicab valie,
-        // the value being 147748104.
         
         
         for (count1 = 1; count1<(int)Math.cbrt(number)+1; count1++) {
             
             a = (int) Math.pow(count1, 3);
-            for (count2 = 2; count2<(int)Math.cbrt(number)+1; count2++) {
+            for (count2 = a+1; count2<(int)Math.cbrt(number)+1; count2++) {
                 
                 b = (int) Math.pow(count2, 3);
-                for (count3 = 3; count3<(int)Math.cbrt(number)+1; count3++) {
+                for (count3 = a+1; count3<(int)Math.cbrt(number)+1; count3++) {
                     
                     c = (int) Math.pow(count3, 3);
-                    for (count4 = 4; count4<(int)Math.cbrt(number)+1; count4++) {
+                    for (count4 = c+1; count4<(int)Math.cbrt(number)+1; count4++) {
                         
                         d = (int) Math.pow(count4, 3);
                         sum1 = a + b;
@@ -52,26 +45,22 @@ public class RamanujanSTaxi {
                                     ", is a Ramanujan Taxicab number!");
                             System.out.println(sum1 + "= " + a + "+" + b + " = " + c + "+" +d);
                             System.out.println();
-                            valuesoutputted[totaloutputs] = sum1;
                             totaloutputs++;
                          }   else if (sum1 == sum2 && sum1<number) {
                             System.out.println();
                             System.out.println(sum1 + " is a Ramanujan Taxicab number!");
                             System.out.println(sum1 + "= " + a + "+" + b + " = " + c + "+" +d);
                             System.out.println();  
-                            valuesoutputted[totaloutputs] = sum1;
                             totaloutputs++;
-                    }
-                        
+                            }
+                        }
                     }
                 }
             }
         }
-        }
-    
                 if (totaloutputs == 0) {
             System.out.println();
             System.out.println("There were no Ramanujan Taxicab numbers that could be found.");
         }
-                }
+    }
 }
