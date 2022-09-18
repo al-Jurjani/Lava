@@ -29,10 +29,10 @@ public class RamanujanSTaxi {
             for (count2 = a+1; count2<(int)Math.cbrt(number)+1; count2++) {
                 
                 b = (int) Math.pow(count2, 3);
-                for (count3 = a+1; count3<(int)Math.cbrt(number)+1; count3++) {
+                for (count3 = 1; count3<(int)Math.cbrt(number)+1; count3++) {
                     
                     c = (int) Math.pow(count3, 3);
-                    for (count4 = c+1; count4<(int)Math.cbrt(number)+1; count4++) {
+                    for (count4 = 1; count4<(int)Math.cbrt(number)+1; count4++) {
                         
                         d = (int) Math.pow(count4, 3);
                         sum1 = a + b;
