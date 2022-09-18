@@ -16,6 +16,8 @@ public class RamanujanSTaxi {
         System.out.println();
         System.out.println("We will check for any Ramanujan's Taxicab numbers "
                 + "that exist between 0 and your entered number!");
+        System.out.println("A Ramanujan number is one that can be expressed "
+                + "as the sum of two cubes in two different ways.");
         
         int a,b,c,d;
         int count1, count2, count3, count4;
@@ -29,10 +31,10 @@ public class RamanujanSTaxi {
             for (count2 = a+1; count2<(int)Math.cbrt(number)+1; count2++) {
                 
                 b = (int) Math.pow(count2, 3);
-                for (count3 = 1; count3<(int)Math.cbrt(number)+1; count3++) {
+                for (count3 = a+1; count3<(int)Math.cbrt(number)+1; count3++) {
                     
                     c = (int) Math.pow(count3, 3);
-                    for (count4 = 1; count4<(int)Math.cbrt(number)+1; count4++) {
+                    for (count4 = count3; count4<(int)Math.cbrt(number)+1; count4++) {
                         
                         d = (int) Math.pow(count4, 3);
                         sum1 = a + b;
@@ -43,13 +45,13 @@ public class RamanujanSTaxi {
                             System.out.println();
                             System.out.println("The number you entered, " + number +
                                     ", is a Ramanujan Taxicab number!");
-                            System.out.println(sum1 + "= " + a + "+" + b + " = " + c + "+" +d);
+                            System.out.println(sum1 + "= " + (int)Math.cbrt(a) + "^3 + " + (int)Math.cbrt(b) + "^3 = " + (int)Math.cbrt(c) + "^3 + " + (int)Math.cbrt(d)+ "^3");
                             System.out.println();
                             totaloutputs++;
                          }   else if (sum1 == sum2 && sum1<number) {
                             System.out.println();
                             System.out.println(sum1 + " is a Ramanujan Taxicab number!");
-                            System.out.println(sum1 + "= " + a + "+" + b + " = " + c + "+" +d);
+                            System.out.println(sum1 + "= " + (int)Math.cbrt(a) + "^3 + " + (int)Math.cbrt(b) + "^3 = " + (int)Math.cbrt(c) + "^3 + " + (int)Math.cbrt(d)+ "^3");
                             System.out.println();  
                             totaloutputs++;
                             }
@@ -61,6 +63,7 @@ public class RamanujanSTaxi {
                 if (totaloutputs == 0) {
             System.out.println();
             System.out.println("There were no Ramanujan Taxicab numbers that could be found.");
-        }
+        } else
+                    System.out.println("The total taxicab numbers that exist in between 0 and the number you entered is: " + totaloutputs);
     }
 }
