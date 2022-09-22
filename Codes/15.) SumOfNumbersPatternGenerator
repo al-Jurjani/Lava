@@ -1,0 +1,37 @@
+package sumofnumberspatterngenerator;
+
+// Zuhair Farhan
+// 27100
+
+import java.util.*;
+
+public class SumOfNumbersPatternGenerator {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        
+        System.out.print("Enter a number: ");
+        int rows = input.nextInt();
+        int sum;
+
+        
+        for (int count1 = 1; count1<=rows; count1++)
+        {
+            sum = 0;
+            for (int count2 = 1; count2<=count1; count2++)
+            {
+                sum = sum + count2;
+                System.out.print(count2);
+                
+                if (count2<count1)
+                {
+                    System.out.print("+");
+                }
+                
+            }
+            System.out.print("=" + sum);
+            System.out.println("");
+        }
+    }
+    
+}
