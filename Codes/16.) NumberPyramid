@@ -1,0 +1,44 @@
+package numberpyramid;
+
+// Zuhair Farhan
+// 27100
+
+import java.util.*;
+
+public class NumberPyramid {
+
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.print("Enter a number: ");
+        int rows = input.nextInt();
+        System.out.println();
+        System.out.println("We will make a number triangle of the number you have entered!");
+        System.out.println();
+        
+        int asteriks = rows;
+        int face = 1;
+        
+        for (int count1=1; count1<=rows; count1++) 
+        {
+            asteriks = asteriks - 1;
+            
+            for (int count2=1; count2<=asteriks; count2++) 
+            {
+                System.out.print(" ");
+            }
+            for (int count3=1; count3<=face; count3++) 
+            {
+                System.out.print(count3);
+            }
+            for (int count4=count1-1; count4>=1; count4--) {
+                System.out.print(count4);
+            }
+            face++;
+            System.out.println();
+        }
+        System.out.println();
+    }
+    
+}
