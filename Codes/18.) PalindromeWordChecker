@@ -14,12 +14,11 @@ public class PalindromeWordChecker {
         System.out.print("Enter a word: ");
         String word = input.next().toLowerCase();
         
-        int word_length = word.length();
         boolean found = true;
         
-        for (int count=0; count < word_length/2; count++) 
+        for (int count=0; count < word.length()/2; count++) 
         {
-            if (word.charAt(count) != word.charAt(word_length-count-1))
+            if (word.charAt(count) != word.charAt(word.length()-count-1))
                     {
                         System.out.println("Your word is not a palindrome.");
                         found = false;
