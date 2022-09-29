@@ -1,0 +1,85 @@
+package stringmanipulationprogram;
+
+// Zuhair Farhan
+// 27100
+
+import java.util.*;
+
+public class StringManipulationProgram {
+
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("Enter a line or a paragraph: ");
+        String line_s = input.nextLine();
+        
+        int demand = 0;
+        
+        while (demand < 1 || demand >5)
+        {
+            System.out.println();
+            System.out.println("Enter '1' for Find and Replace (one by one)");
+            System.out.println("Enter '2 for Find and Replace (all)");
+            System.out.println("Enter '3' for Word counter");
+            System.out.println("Enter '4' Sentence counter");
+            System.out.println("Enter '5' for Articles counter");
+            System.out.println();
+            demand = input.nextInt();
+        }
+        
+        switch (demand) 
+        {
+            case 1: 
+            {
+                System.out.print("Enter the word you want to replace: ");
+                String replace_this = input.next().toUpperCase();
+                System.out.print("Enter the new word: ");
+                String new_word = input.next().toUpperCase();
+                line_s = line_s.toUpperCase();
+                System.out.println("Your new sentence is: " + line_s.replace(replace_this, new_word));
+                break;
+            }
+            case 2: 
+            {
+                System.out.print("Enter the word you want to replace: ");
+                String replace_this = input.next().toUpperCase();
+                System.out.print("Enter the new word: ");
+                String new_word = input.next().toUpperCase();
+                line_s = line_s.toUpperCase();
+                System.out.println("Your new sentence is: " + line_s.replaceAll(replace_this, new_word));
+                break;
+            }
+            case 3:
+            {
+                String [] words = line_s.split(" ");
+                System.out.println("The number of word(s) in your sentence/paragraph equals to: " + words.length);
+                System.out.println("The number of spaces in your sentence/paragraph equals to: " + (words.length-1));
+                break;
+            }
+            case 4:
+            {
+                String [] sentences = line_s.split("\\.");
+                System.out.print("The number of word(s) in your sentence/paragraph equals to: " + sentences.length);
+                break;
+            }
+            case 5:
+            {
+                line_s = line_s.toUpperCase();
+                int articles = 0;
+                
+                String [] words = line_s.split(" ");
+                for (int count=0; count<words.length; count++)
+                {
+                    if (words[count].equals("A") ||  words[count].equals("AN") || words[count].equals("THE"))
+                    {
+                        articles++;
+                    }
+                }
+                System.out.println("The number of artices in your sentenence/paragraph equals to: " + articles);
+                break;
+            }
+    
+        }
+    }
+}
