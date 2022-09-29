@@ -1,0 +1,31 @@
+
+package hexadecimaltodenary;
+
+// Zuhair Farhan
+// 27100
+
+import java.util.*;
+
+public class HexadecimalToDenary {
+
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner (System.in);
+        
+        System.out.print("Enter a single hexadecimal digit: ");
+        char hex = input.next().toUpperCase().charAt(0);
+        
+        if (hex >= '0' && hex <= '0')
+        {
+            System.out.print("Your hex digit in denary is equals to: " + hex);
+        }
+        else if (hex >= 'A' && hex <= 'F')
+        {
+            System.out.println("Your hex digit in denary is equals to: " + ((int)hex-55));
+        }
+        else 
+        {
+            System.out.println("You are wrong!");
+        }
+}
+}
