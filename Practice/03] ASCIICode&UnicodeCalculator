@@ -1,0 +1,30 @@
+package asciicode.unicodecharactercalulator;
+
+// Programming Exercizes: Question 4.8 & 4.9;
+
+import java.util.*;
+
+public class ASCIICodeUniCodeCharacterCalulator {
+
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+        int userNumber;
+        char userCharacter;
+        
+        do 
+        {
+            System.out.print("Enter an interer value ranging between 0 and 127: "); 
+            userNumber = input.nextInt();
+            System.out.print("Enter a character: ");
+            userCharacter = input.next().charAt(0);
+            System.out.println();
+        } while (userNumber<0 || userNumber>127); 
+        
+        System.out.printf("The character value in the ASCII encoding shceme equal of %d is: %c", userNumber, (char) userNumber);
+        System.out.println();
+        System.out.printf("The integer value in the Unicode encoding scheme of %c is equal to: %d", userCharacter, (int) userCharacter);
+        System.out.println();
+    }
+    
+}
