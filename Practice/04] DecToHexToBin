@@ -1,0 +1,39 @@
+package dectohextobin;
+
+// Programming Exercizes: Question 4.11 & 4.12
+
+import java.util.*;
+
+public class DecToHexToBin {
+
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+        int denary;
+        char hex;
+        
+        do 
+        {
+            System.out.print("Enter an integer value between 0 and 15: ");
+            denary = input.nextInt();
+            System.out.println();
+        } while (denary<0 || denary>15);
+        
+        if (denary>=0 && denary <=9) 
+        {
+            hex = (char)(denary+48);
+            System.out.printf("The hexadecimal value of %d is: %c", denary, hex);
+            System.out.println();
+        }
+        else 
+        {
+            hex = (char)(denary+55);
+            System.out.printf("The hexadecimal value of %d is: %c", denary, hex);
+            System.out.println();
+        }
+        
+    }
+    
+}
+
+// INCOMPLETE! Haven't computed the Binary part.
