@@ -1,0 +1,24 @@
+package areaofapolygon;
+
+// Programming Exercizes: Section 4.2: Question 4.5
+
+import java.util.*;
+
+public class AreaOfAPolygon {
+
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.print("Enter the number of sides of your polygon: ");
+        int sides = input.nextInt();
+        System.out.print("Enter the length of the side of your polygon: ");
+        float side_length = input.nextFloat();
+        System.out.println();
+        
+        double area = (sides * Math.pow(side_length, 2)) / (4 * Math.tan(Math.PI/sides));
+        System.out.printf("The area of your polygon is %f!", area);
+        System.out.println();
+    }
+    
+}
