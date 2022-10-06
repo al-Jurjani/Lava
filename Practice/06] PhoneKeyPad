@@ -1,0 +1,53 @@
+package phonekeypad;
+
+// Programming Exercizes, Chapter 4, 4.15
+
+import java.util.*;
+
+public class PhoneKeyPad {
+
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        char character; 
+        do 
+        {
+            System.out.print("Enter a character between A and Z: ");
+            character = input.next().toUpperCase().charAt(0);
+        } while (character < 'A' || character > 'Z');
+        
+        if (character >= 'A' && character <= 'C') 
+        {
+            System.out.println("The number your character holds in a phone keypad is 2!");
+        }
+        else if (character >= 'D' && character <= 'F') 
+        {
+            System.out.println("The number your character holds in a phone keypad is 3!");
+        }
+        else if (character >= 'G' && character <= 'I') 
+        {
+            System.out.println("The number your character holds in a phone keypad is 4!");
+        }
+        else if (character >= 'J' && character <= 'L') 
+        {
+            System.out.println("The number your character holds in a phone keypad is 5!");
+        }
+        else if (character >= 'M' && character <= 'O') 
+        {
+            System.out.println("The number your character holds in a phone keypad is 6!");
+        }
+        else if (character >= 'P' && character <= 'S') 
+        {
+            System.out.println("The number your character holds in a phone keypad is 7!");
+        }
+        else if (character >= 'T' && character <= 'V') 
+        {
+            System.out.println("The number your character holds in a phone keypad is 8!");
+        }
+        else if (character >= 'W' && character <= 'Z') 
+        {
+            System.out.println("The number your character holds in a phone keypad is 9!");
+        }
+    }  
+}
