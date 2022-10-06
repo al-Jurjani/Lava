@@ -1,0 +1,30 @@
+package substringchecker;
+
+// Programming Exercizes, Chapter 4, 4.22
+
+import java.util.*;
+
+public class SubStringChecker {
+
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("Enter a sentence: ");
+        String set1 = input.nextLine().toLowerCase();
+        System.out.println();
+        System.out.println("Enter a word, or short sentence: ");
+        String set2 = input.nextLine().toLowerCase();
+        System.out.println();
+        
+        if (set1.contains(set2) == true) 
+        {
+            System.out.printf("\"%s\" is a substring of \"%s\"!", set2, set1);
+        }
+        else 
+        {
+            System.out.printf("\"%s\" is not a substring of \"%s\"!", set2, set1);
+        }
+        System.out.println();
+    }   
+}
