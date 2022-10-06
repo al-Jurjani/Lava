@@ -1,0 +1,61 @@
+package itplabquizq2;
+
+// Zuhair Farhan
+// 27100
+// Column 2, Q2
+
+import java.util.*;
+
+public class ITPLabQuizQ2 {
+
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.print("Enter an alphanumeric string: ");
+        String user_input = input.next();
+        String numbers = "";
+        String [] characters = user_input.split("");
+        
+        for (int count1=0; count1<user_input.length(); count1++) 
+        {
+            switch (characters[count1]) 
+            {
+                case "0":
+                case "1":
+                case "2":
+                case "3":
+                case "4":
+                case "5":
+                case "6":
+                case "7":
+                case "8":
+                case "9":
+                {
+                    numbers = numbers + characters[count1];
+                    break;
+                }
+                default: 
+                {
+                    numbers = numbers + " ";
+                    break;
+                }
+            }
+        }
+            
+        String [] total_numbers = numbers.split(" ");
+        int largest = 0;
+        
+        for (int count2=0; count2<total_numbers.length; count2++) 
+        {
+            if (total_numbers[count2].equals("") == false)
+            {
+                if (Integer.parseInt(total_numbers[count2]) > largest) 
+                {
+                    largest =  Integer.parseInt(total_numbers[count2]);
+                }
+            }  
+        }
+        System.out.println("The largest number in your entered string is: " + largest);
+    }
+}
