@@ -1,0 +1,38 @@
+package vowelandconsonantcounter;
+
+// Programming Exercizes, Chapter 4, 4.13
+
+import java.util.*;
+
+public class VowelAndConsonantCounter {
+
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("Enter a sentence or word or paragraph: ");
+        String entry = input.nextLine().toLowerCase();
+        int length = entry.length();
+        int vowels = 0, consonants = 0;
+        System.out.println();
+        
+        for (int count=0; count<length; count++) 
+        {
+            if (entry.charAt(count) >= 'a' && entry.charAt(count) <='z') 
+            {
+                if (entry.charAt(count) == 'a' || entry.charAt(count) == 'e' || entry.charAt(count) == 'i' || entry.charAt(count) == 'o' || entry.charAt(count) == 'u') 
+                {
+                    vowels++;
+                }
+                else 
+                {
+                    consonants++;
+                }
+            }
+        }
+        System.out.printf("The number of vowels in your entered string equals to %d!", vowels);
+        System.out.println();
+        System.out.printf("The number of consonants in your entered string equals to %d!", consonants);
+        System.out.println();
+    }
+}
