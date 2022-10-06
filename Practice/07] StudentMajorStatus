@@ -1,0 +1,114 @@
+package studentmajorstatus;
+
+// Programming Exercizes, Chapter 4, 4.18
+
+import java.util.*;
+
+public class StudentMajorStatus {
+
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.print("Enter your two character major-and-status code: ");
+        String code = input.next().toUpperCase();
+        
+        if (code.charAt(0) == 'M') 
+        {
+            switch (code.charAt(1)) 
+            {
+                case '1': 
+                {
+                    System.out.println("You are a Mathematics Freshman!");
+                    break;
+                }
+                case '2': 
+                {
+                    System.out.println("You are a Mathematics Sophmore!"); 
+                    break;
+                }
+                case '3': 
+                {
+                    System.out.println("You are a Mathematics Junior!"); 
+                    break;
+                }
+                case '4': 
+                {
+                    System.out.println("You are a Mathematics Senior!"); 
+                    break;
+                }
+                default: 
+                {
+                    System.out.println("Error, second character is out of expected range!");
+                    break;
+                }
+            }
+        }
+        else if (code.charAt(0) == 'C') 
+        {
+            switch (code.charAt(1)) 
+            {
+                case '1': 
+                {
+                    System.out.println("You are a Computer Science Freshman!");
+                    break;
+                }
+                case '2': 
+                {
+                    System.out.println("You are a Computer Science Sophmore!"); 
+                    break;
+                }
+                case '3': 
+                {
+                    System.out.println("You are a Computer Science Junior!"); 
+                    break;
+                }
+                case '4': 
+                {
+                    System.out.println("You are a Computer Science Senior!"); 
+                    break;
+                }
+                default: 
+                {
+                    System.out.println("Error, second character is out of expected range!");
+                    break;
+                }
+            }
+        }
+        else if (code.charAt(0) == 'I') 
+        {
+            switch (code.charAt(1)) 
+            {
+                case '1': 
+                {
+                    System.out.println("You are a Information Technology Freshman!");
+                    break;
+                }
+                case '2': 
+                {
+                    System.out.println("You are a Information Technology Sophmore!"); 
+                    break;
+                }
+                case '3': 
+                {
+                    System.out.println("You are a Information Technology Junior!"); 
+                    break;
+                }
+                case '4': 
+                {
+                    System.out.println("You are a Information Technology Senior!"); 
+                    break;
+                }
+                default: 
+                {
+                    System.out.println("Error, second character is out of expected range!");
+                    break;
+                }
+            }
+        }
+        else 
+        {
+            System.out.println("Error, first character is an unexpected input!");
+        }
+    }  
+}
