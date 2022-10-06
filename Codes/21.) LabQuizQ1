@@ -1,0 +1,38 @@
+package itplabquiz;
+
+// Zuhair Farhan
+// 27100}
+// Column 2, Q1
+
+import java.util.*;
+
+public class ITPLabQuiz {
+
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.print("Enter a sentence: ");
+        String user_input = input.nextLine().toLowerCase();
+        
+        boolean panagram = true;
+
+        for (char count = 'a'; count<='z'; count++) 
+        {
+            if (user_input.indexOf(count) == -1) 
+            {
+                panagram = false;
+                break;
+            }
+        }
+        
+        if (panagram == true) 
+        {
+            System.out.println("Your sentence is a panagram!");
+        }
+        else 
+        {
+            System.out.println("Your sentence is not a panagram!");
+        }
+    }
+}
