@@ -1,0 +1,26 @@
+package vehicleplategenerator;
+
+// Programming Exercizes, Chapter 4, 4.25
+
+public class VehiclePlateGenerator {
+
+    public static void main(String[] args) {
+        
+        char letter1, letter2, letter3;
+        int digit1, digit2, digit3, digit4;
+        String plate;
+        
+        letter1 = (char) (65 + ((int)(Math.random() * 26)));
+        letter2 = (char) (65 + ((int)(Math.random() * 26)));
+        letter3 = (char) (65 + ((int)(Math.random() * 26)));
+        
+        digit1 = (int) (Math.random() * 9);
+        digit2 = (int) (Math.random() * 9);
+        digit3 = (int) (Math.random() * 9);
+        digit4 = (int) (Math.random() * 9);
+        
+        plate = "" + letter1 + letter2 + letter3 + digit1 + digit2 + digit3 + digit4;
+        System.out.printf("Your new car plate number is: %s", plate);
+
+    }
+}
