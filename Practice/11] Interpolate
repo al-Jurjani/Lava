@@ -1,0 +1,29 @@
+package interpolate;
+
+/**
+Write a program Interpolate.java that given an array of n real numbers, create a new array of size
+n + (n − 1) in which an average value is inserted between every two contiguous values of the original
+array. For example, if array a = {1.0, 4.0, 6.0, 9.0}, then your program should create a new array
+b containing {1.0, 2.5, 4.0, 5.0, 6.0, 7.5, 9.0}.
+ */
+public class Interpolate {
+    public static void main(String[] args) {
+        
+        double [] a = {1.0, 4.0, 6.0, 9.0};
+        double [] b = new double [a.length + (a.length - 1)];
+        int posA = 1, posB = 0;
+        
+        for (int count = 0; count<a.length-1; count++) 
+        {
+            b[posB] = a[posA-1];
+            b[posB+1] = (a[posA-1] + a[posA])/2;
+            posB+=2; posA++;
+        }
+        
+        b[b.length-1] = a[a.length-1];
+        for (double value : b) 
+        {
+            System.out.println(value);
+        }
+    }
+}
