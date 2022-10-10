@@ -1,0 +1,30 @@
+package append;
+
+/**
+Write a program Append.java that given two integer arrays, create a new array that contains the result
+of appending the second array’s values at the end of the first array. For example, if arrays a = {2, 4,
+6} and b = {1, 2, 3, 4, 5} respectively, then your program should create a new array c containing
+{2, 4, 6, 1, 2, 3, 4, 5}.
+ */
+
+public class Append {
+    public static void main(String[] args) {
+        
+        int[] a = {1, 2, 3, 4, 5,7,9}; // sample values for a and b.
+        int[] b = {1, 2, 3, 4, 5,7,9};                       // works for any values for a and b, regardless of their length.
+        int[] c = new int [a.length + b.length];
+
+            for (int count = 0; count < c.length; count++) 
+            {
+                if (count < a.length) 
+                    c[count] = a[count];
+                else 
+                    c[count] = b[count-a.length];
+            }
+
+        for (int value : c) 
+        {
+            System.out.println(value);
+        }
+    }
+}
