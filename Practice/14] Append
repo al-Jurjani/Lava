@@ -1,0 +1,52 @@
+package patterns;
+
+/**
+Given integer N, write for loops to print an N-by-N triangular patterns like the ones below.
+1 * * * *
+2 2 * * *
+3 3 3 * *
+4 4 4 4 *
+5 5 5 5 5
+&&
+A
+B B
+C C C
+D D D D
+E E E E E
+ */
+
+import java.util.*;
+
+public class Patterns {
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.print("Enter an integer: ");
+        int n = input.nextInt();
+        System.out.println();
+        
+        for (int count1 = 1; count1<=n; count1++) 
+        {
+            for (int count2 = 1; count2<=count1; count2++) 
+            {
+                System.out.print(count1);
+            }
+            for (int count3 = 1; count3<= n-count1; count3++ ) 
+            {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+        System.out.println();
+        
+        for (char countA = 'A'; countA<= n+64; countA++) 
+        {
+            for (int countB = 1; countB<=countA-64; countB++) 
+            {
+                System.out.print(countA);
+            }
+            System.out.println();
+        }
+    }
+}
