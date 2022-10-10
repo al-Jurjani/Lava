@@ -1,0 +1,44 @@
+package billgenerator;
+
+import java.util.*;
+
+public class BillGenerator {
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.print("Enter your previous month reading: ");
+        int previous_month_reading = input.nextInt();
+        System.out.print("Enter your current month reading: ");
+        int current_month_reading = input.nextInt();
+        int power_used;
+        
+        if (current_month_reading<previous_month_reading) 
+        {
+            power_used = ((99999-previous_month_reading) + current_month_reading + 1);
+        }
+        else 
+        {
+            power_used = (current_month_reading-previous_month_reading);
+        }
+        
+        double cost;
+        if (power_used <1000) 
+        {
+            cost = (power_used * 7) * 0.01;
+        }
+        else if (power_used >= 1000 && power_used <= 2500 ) 
+        {
+            cost = 70.00 + (((power_used-1000) * 5.00) * 0.01);
+        }
+        else 
+        {
+            cost = 145.00 +(((power_used-2500) * 3.00) * 0.01);
+        }
+        
+        System.out.println();
+        System.out.printf("The total power you used this month was: %d KWH(s)", power_used);
+        System.out.println();
+        System.out.printf("Your total electricity bill for this month is: $%f", cost);
+    }
+}
