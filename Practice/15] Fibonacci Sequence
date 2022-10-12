@@ -1,0 +1,18 @@
+// A Fibonacci sequence is defined as follows: the first and second terms in the sequence are 0 and 1. 
+// Subsequent terms are found by adding the preceding two terms in the sequence. 
+// Write a program to generate the first n terms of the sequence.            
+
+            Scanner input = new Scanner(System.in);
+            System.out.println("Enter a number: ");
+            int size = input.nextInt();
+            int[] numbers = new int[size];
+            
+            numbers[0] = 0;
+            numbers[1] = 1;
+            
+            System.out.print(0 + " ");
+            System.out.print(1 + " ");
+            for (int i = 2; i < numbers.length; i++) {
+                numbers[i] = numbers[i-1] + numbers[i-2];
+                System.out.print(numbers[i] + " ");
+            }  
