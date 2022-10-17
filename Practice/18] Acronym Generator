@@ -1,0 +1,41 @@
+package acronym.generator;
+
+// https://practiceit.cs.washington.edu/problem/view/bjp5/chapter4/e22-printAcronym
+
+import java.util.*;
+
+public class AcronymGenerator {
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("Enter a string: ");
+        String entry = input.nextLine();
+        String acronym = "";
+        
+        String[] words = entry.split(" ");
+        if (words.length == 1) 
+        {
+            if (words[0].length() > 3) 
+            {
+                System.out.println("The acronym of your word will be the first three letters, capiltalized.");
+                for (int count = 0; count <=2; count++) 
+                {
+                    acronym += words[0].toUpperCase().charAt(count);
+                }
+            } else 
+            {
+                System.out.println("Your word is too small for an acronym to be generated. So, your acronym is the same as your word.");
+                acronym = words[0];
+            }
+        } 
+        else 
+        {
+            for (int count = 0; count < words.length; count++) 
+            {
+                 acronym +=  words[count].charAt(0);
+            }
+        }
+        System.out.println("The acronym of the string you entered is: " + acronym);
+    }
+}
