@@ -1,0 +1,23 @@
+package hopscotch;
+
+// https://practiceit.cs.washington.edu/problem/view/bjp5/chapter5/e10-hopscotch
+
+import java.util.*;
+
+public class Hopscotch {
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.print("Enter the number of hops you want in your game: ");
+        byte hops = input.nextByte();
+        byte num = 1;
+        
+        for (byte count1 = 1; count1<=hops ; count1++) 
+        {
+            System.out.println("  " + num++ + "  ");
+            System.out.println(num++ + "   " + num++);
+        }
+        System.out.println("  " + num++ + "  ");
+    }
+}
