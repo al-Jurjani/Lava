@@ -4,10 +4,10 @@ package pkg100lowercaseletters;
 // 27100
 
 public class Main {
-    public static void main(String[] args) {
-        
+    public static void main(String[] args) 
+    {
         char[] letters_array = randomchar();
-        int[] frequency = new int[26];
+        int[] frequency = new int[26];  // The number of occurences for each randomly generated letter.
         
         for (int count = 0; count<letters_array.length; count++) 
         {
@@ -26,7 +26,7 @@ public class Main {
         char[] chr_array = new char[100];
         for (int count = 0; count<chr_array.length; count++) 
         {
-            chr_array[count] = (char)(97 + (int)(Math.random() * 26));
+            chr_array[count] = (char)(97 + (int)(Math.random() * 26)); // generates a lowercase letter.
         }
         return chr_array;
     }
