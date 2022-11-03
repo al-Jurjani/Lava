@@ -1,0 +1,33 @@
+package pkg100lowercaseletters;
+
+// Zuhair Farhan
+// 27100
+
+public class Main {
+    public static void main(String[] args) {
+        
+        char[] letters_array = randomchar();
+        int[] frequency = new int[26];
+        
+        for (int count = 0; count<letters_array.length; count++) 
+        {
+            System.out.println(letters_array[count]);
+            frequency[(int)letters_array[count] - 97]++;
+        }
+        
+        for (int count = 0; count<=25; count++) 
+        {
+            System.out.println("The number of " + (char)(count+97) + "'s is: " + frequency[count]);
+        }
+    }
+    
+    public static char[] randomchar () 
+    {
+        char[] chr_array = new char[100];
+        for (int count = 0; count<chr_array.length; count++) 
+        {
+            chr_array[count] = (char)(97 + (int)(Math.random() * 26));
+        }
+        return chr_array;
+    }
+ }
