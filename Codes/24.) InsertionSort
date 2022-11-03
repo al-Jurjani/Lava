@@ -13,7 +13,7 @@ public class InsertionSort {
         int[] num_arr = new int[20];
         System.out.print("Enter the number of elements you want, equal to or less than 20: ");
         int values = input.nextInt(); // number of values entered.
-        int insertion = 1; // value to be inserted.
+        int insertion; // value to be inserted.
         int index; // index position in which insertion will be entered.
         
         for (int count = 0; count < values; count++) 
@@ -22,53 +22,57 @@ public class InsertionSort {
             num_arr[count] = input.nextInt();
         }
         
-        if (values == 0) 
+        if (values == 20) // array is filled with user-entered values.
         {
-            System.out.print("Enter the value you want to insert: ");
-            insertion = input.nextInt();
-            num_arr[0] = insertion;
-        }
-        
-        else if (values == 1) // if the array only has one element.
-        {
-            System.out.print("Enter the value you want to insert: ");
-            insertion = input.nextInt();
-            if (insertion > num_arr[0]) 
-            {
-                num_arr[0] = insertion;
-            }
-        }
-        
-        else if (values < 20) // if the array isn't already full.
-        {
-            System.out.print("Enter the value you want to insert: ");
-            insertion = input.nextInt();
-            
-            index = indexpos(num_arr, insertion); // Finds the index value in which insertion is to be entered.
-            System.out.println(index);
-            
-            if (index == -1) 
-            {
-                num_arr[values] = insertion; // insertion is the greatest value of the array.
-            }
-            else 
-            {
-                for (int count = values-1; count>= index; count--) // copies elements to the index above it.
-                {
-                    num_arr[count+1] = num_arr[count];
-                }
-                num_arr[index] = insertion; // enters insertion into its proper place.
-            }
-        }
-        
-        else
             System.out.println("Your array is full! You can not enter any more elements.");
-        
+        }
+        else 
+        {
+            System.out.print("Enter the value you want to insert: ");
+            insertion = input.nextInt();
+            switch (values) 
+            {
+                case 0: // array has no user-entered elements before insertion value.
+                {
+                    num_arr[0] = insertion; 
+                }
+                case 1: // array has only one user-entered element before insertion value.
+                {
+                    if (insertion > num_arr[0]) // insertion value is greater than the sole value the user entered initially.
+                    {
+                        num_arr[1] = insertion;
+                    }
+                    else  // insertion value is smaller than the sole value the user entered initially.
+                    {
+                        num_arr[1] = num_arr[0];
+                        num_arr[0] = insertion;
+                    }
+                }
+                default: // array has more than 1 but less than 20 values entered by user before insertion value.
+                {
+                    index = indexpos(num_arr, insertion); // Finds the index value in which insertion is to be entered.
+                    System.out.println(index);
+            
+                     if (index == -1) // insertion is the greatest value of the array.
+                     {
+                         num_arr[values] = insertion; 
+                     }
+                     else 
+                    {
+                        for (int count = values-1; count>= index; count--) // copies elements to the index above it.
+                        {
+                            num_arr[count+1] = num_arr[count];
+                        }
+                    num_arr[index] = insertion; // enters insertion into its proper place.
+                    }
+                }
+            }
+        }
+
         for (int count = 0; count<=values; count++) // prints elements the user has entered.
         {
             System.out.print(" " + num_arr[count] + " ");
-        }
-        
+        } 
     }
     
     public static int indexpos(int[] arr, int value) // method to find the index position in which the insertion value will be entered.
