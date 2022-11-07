@@ -32,13 +32,14 @@ public class Sudoku
             {
                 print_board(board);
                 char change_value;
+                boolean incorrect;
                 do
                 {
                     row = row_pos();
                     column = column_pos();
                     System.out.println(row + " : " + column);
-                    invalid_row_column(row, column, hard_coded_values);
-                } while (invalid_row_column(row, column, hard_coded_values) == true);
+                    incorrect = invalid_row_column(row, column, hard_coded_values);
+                } while (incorrect == true);
 
                 System.out.println();
 
