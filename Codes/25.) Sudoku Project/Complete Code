@@ -1,4 +1,4 @@
-import java.util.Scanner;
+
 
 public class Sudoku
 {
@@ -31,13 +31,15 @@ public class Sudoku
             while (total_values<81)
             {
                 print_board(board);
+                System.out.println();
+
                 char change_value;
                 boolean incorrect;
                 do
                 {
                     row = row_pos();
                     column = column_pos();
-                    System.out.println(row + " : " + column);
+                    System.out.println();
                     incorrect = invalid_row_column(row, column, hard_coded_values);
                 } while (incorrect == true);
 
@@ -57,10 +59,16 @@ public class Sudoku
                         System.out.println("Your value does not pass all three checks. Would you like to choose another value, or choose another position to add/change a value?");
                         System.out.print("Enter 'y' to try another value, or 'n' to try another index position: ");
                         change_value = input.next().charAt(0);
+                        change_value = Character.toLowerCase(change_value);
                     }
                 } while (change_value == 'y');
-
             }
+
+            System.out.println("Congratulations! You won!");
+            System.out.println("Would you like to play again?");
+            System.out.println("Press 'y' if you'd like to play again, else press 'n'.");
+            play_again = input.next().charAt(0);
+            play_again = Character.toLowerCase(play_again);
         } while (play_again == 'y');
     }
 
@@ -114,12 +122,14 @@ public class Sudoku
         while(correct == false)
         {
             System.out.println("What row do you want to enter/change your value in?");
-            System.out.println("Row: ");
+            System.out.print("Row: ");
+            System.out.println();
             int row = input.nextInt() - 1;
             if (row < 0 || row > 8)
             {
                 System.out.println("Invalid row number: out of bounds!");
                 System.out.println("Please enter your row number again.");
+                System.out.println();
             }
             else
                 return row;
@@ -133,12 +143,14 @@ public class Sudoku
         while(correct == false)
         {
             System.out.println("What column do you want to enter/change your value in?");
-            System.out.println("Column: ");
+            System.out.print("Column: ");
+            System.out.println();
             int column = input.nextInt() - 1;
             if (column < 0 || column > 8)
             {
                 System.out.println("Invalid Column number: out of bounds!");
                 System.out.println("Please enter your Column number again.");
+                System.out.println();
             }
             else
                 return column;
@@ -151,6 +163,7 @@ public class Sudoku
         {
             System.out.println("Invalid row and/or column number: You can not change the initial values of the board!");
             System.out.println("Please enter your rwo and column number again.");
+            System.out.println();
             return true;
         }
         return false;
@@ -168,6 +181,7 @@ public class Sudoku
             {
                 System.out.println("Invalid value: out of expected range!");
                 System.out.println("Please enter your value again.");
+                System.out.println();
             }
             else
                 return (char)(value+48);
@@ -203,143 +217,28 @@ public class Sudoku
 
     public static boolean _3by3_checker(int row, int column, char value, char[][] board)
     {
-        boolean found = false;
+        int row_count = -1, column_count = -1;
+        int count = 0;
 
-        if (row <= 2 && column <=2)
+        while (row_count == -1 || column_count == -1)
         {
-            for (int i = 0; i <=2; i++)
-            {
-                for (int j = 0; j <=2; j++)
-                {
-                    outerloop:
-                    if (board[i][j] == value)
-                    {
-                        found = true;
-                        break outerloop;
-                    }
-                }
-            }
+            if (row >= count && row <= count + 2)
+                row_count = count;
+            if (column >= count && column <= count + 2)
+                column_count = count;
+            count += 3;
         }
-        else if (row <= 2 && column <=5)
+
+        for (int i = row_count; i <= row_count+2; i++)
         {
-            for (int i = 0; i <=2; i++)
+            for (int j = column_count; j <= column_count+2; j++)
             {
-                for (int j = 3; j <=5; j++)
-                {
-                    outerloop:
-                    if (board[i][j] == value)
-                    {
-                        found = true;
-                        break outerloop;
-                    }
-                }
-            }
-        }
-        else if (row <= 2 && column <=8)
-        {
-            for (int i = 0; i <=2; i++)
-            {
-                for (int j = 6; j <=8; j++)
-                {
-                    outerloop:
-                    if (board[i][j] == value)
-                    {
-                        found = true;
-                        break outerloop;
-                    }
-                }
-            }
-        }
-        else if (row <= 5 && column <=2)
-        {
-            for (int i = 3; i <=5; i++)
-            {
-                for (int j = 0; j <=2; j++)
-                {
-                    outerloop:
-                    if (board[i][j] == value)
-                    {
-                        found = true;
-                        break outerloop;
-                    }
-                }
-            }
-        }
-        else if (row <= 5 && column <=5)
-        {
-            for (int i = 3; i <=5; i++)
-            {
-                for (int j = 3; j <=5; j++)
-                {
-                    outerloop:
-                    if (board[i][j] == value)
-                    {
-                        found = true;
-                        break outerloop;
-                    }
-                }
-            }
-        }
-        else if (row <= 5 && column <=8)
-        {
-            for (int i = 3; i <=5; i++)
-            {
-                for (int j = 6; j <=8; j++)
-                {
-                    outerloop:
-                    if (board[i][j] == value)
-                    {
-                        found = true;
-                        break outerloop;
-                    }
-                }
-            }
-        }
-        else if (row <= 8 && column <=2)
-        {
-        for (int i = 6; i <=8; i++)
-            {
-            for (int j = 0; j <=2; j++)
-                {
-                outerloop:
                 if (board[i][j] == value)
-                    {
-                        found = true;
-                        break outerloop;
-                    }
-            }
-            }
-        }
-        else if (row <= 8 && column <=5)
-        {
-            for (int i = 6; i <=8; i++)
-            {
-                for (int j = 3; j <=5; j++)
                 {
-                    outerloop:
-                    if (board[i][j] == value)
-                    {
-                        found = true;
-                        break outerloop;
-                    }
+                    return true;
                 }
             }
         }
-        else if (row <= 8 && column <=8)
-        {
-            for (int i = 6; i <=8; i++)
-            {
-                for (int j = 6; j <=8; j++)
-                {
-                    outerloop:
-                    if (board[i][j] == value)
-                    {
-                        found = true;
-                        break outerloop;
-                    }
-                }
-            }
-        }
-        return found;
+        return false;
     }
 }
