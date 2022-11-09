@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 
 public class Sudoku
 {
@@ -7,12 +7,20 @@ public class Sudoku
         Scanner input = new Scanner(System.in);
         char play_again = 'y';
         int row, column;
+        char difficulty;
         char value;
 
         do {
-            char[][] board = board_generator();
+
+            System.out.println("What difficulty level do you want to play with?");
+            System.out.print("Press 'e' for easy, 'm' for medium, 'h' for hard, or 'x' for expert: ");
+            difficulty = input.next().charAt(0);
+            difficulty = Character.toLowerCase(difficulty);
+
+            char[][] board = board_generator(difficulty);
             boolean[][] hard_coded_values = new boolean[9][9];
             int total_values = 0;
+
             for (int i = 0; i <= 8; i++)
             {
                 for (int j = 0; j <= 8; j++)
@@ -73,31 +81,65 @@ public class Sudoku
     }
 
 
-    public static char[][] board_generator()
+    public static char[][] board_generator(char diff)
     {
-        char[][] board = new char[9][9];
-        for (int i = 0; i <=8; i++)
-        {
-            for (int j = 0; j <= 8; j++)
-            {
-                board[i][j] = ' ';
-            }
-        }
 
-        int limit = (int)(Math.random() * 41);
-        int row, column;
-        char value;
-        for (int count = 0; count<= 8; count++)
+        if (diff == 'e')
         {
-            row = count;
-            column = (int)(Math.random()*9);
-            value = (char)(49 + (int)(Math.random()*9));
-            if (row_checker(row, value, board) == false && column_checker(column, value, board) == false && _3by3_checker(row, column, value, board) == false)
-            {
-                board[row][column] = value;
-            }
+            char[][] board = {
+                    {' ',' ',' ',' ',' ','2',' ','9',' '},
+                    {'1',' ',' ',' ',' ',' ',' ', '5',' '},
+                    {' ','6','9','8','1',' ','7',' ','3'},
+                    {' ','2','1',' ','3','7',' ',' ',' '},
+                    {' ',' ',' ',' ','9',' ','2','4','1'},
+                    {' ','5','4','6','2',' ','3',' ',' '},
+                    {'6','1',' ','2','8',' ',' ',' ',' '},
+                    {' ','8','5','1','4',' ',' ',' ','9'},
+                    {' ','9',' ',' ',' ',' ','8','1','2'}};
+            return board;
         }
-        return board;
+        else if(diff == 'm')
+        {
+            char[][] board = {
+                    {' ',' ',' ','3','9','8',' ',' ',' '},
+                    {' ','2','7',' ',' ',' ',' ',' ',' '},
+                    {' ','3',' ','4',' ',' ','1',' ',' '},
+                    {' ',' ',' ',' ',' ',' ',' ','5','2'},
+                    {'3',' ',' ',' ',' ','7',' ',' ','1'},
+                    {' ',' ',' ','5','3','9',' ',' ',' '},
+                    {'2',' ',' ','1',' ','5','9',' ',' '},
+                    {' ',' ',' ',' ',' ',' ','8',' ','7'},
+                    {'8','6',' ',' ',' ',' ',' ',' ',' '}};
+            return board;
+        }
+        else if (diff == 'h')
+        {
+            char[][] board = {
+                    {' ',' ',' ',' ','5',' ','6',' ',' '},
+                    {'6',' ','7',' ',' ',' ','2','1',' '},
+                    {' ',' ','3','9',' ',' ',' ',' ',' '},
+                    {' ',' ',' ',' ','7',' ',' ',' ','8'},
+                    {' ','5',' ',' ','3','4',' ','2',' '},
+                    {' ',' ','2',' ',' ',' ',' ',' ','9'},
+                    {' ','6',' ',' ',' ',' ','8',' ',' '},
+                    {'8',' ',' ','3',' ','5',' ',' ','1'},
+                    {' ','7',' ','1',' ',' ',' ',' ',' '}};
+            return board;
+        }
+        else
+        {
+            char[][] board = {
+                    {' ','1',' ','7','6',' ',' ',' ',' '},
+                    {' ',' ',' ','5',' ',' ',' ','2','8'},
+                    {' ',' ',' ',' ',' ','9','6',' ',' '},
+                    {' ',' ',' ',' ',' ',' ',' ',' ',' '},
+                    {' ',' ',' ','1',' ','5','4','9',' '},
+                    {' ','3','2',' ',' ',' ','5','1',' '},
+                    {' ','8',' ',' ',' ',' ',' ','4',' '},
+                    {'9',' ','3',' ',' ','8',' ',' ','1'},
+                    {' ',' ','5',' ',' ',' ','7',' ','6'}};
+            return board;
+        }
     }
 
     public static void print_board (char[][] board)
@@ -114,6 +156,8 @@ public class Sudoku
             System.out.println();
         }
     }
+
+
 
     public static int row_pos ()
     {
@@ -169,6 +213,8 @@ public class Sudoku
         return false;
     }
 
+
+
     public static char proper_value ()
     {
         Scanner input = new Scanner(System.in);
@@ -188,8 +234,6 @@ public class Sudoku
         }
         return ' ';
     }
-
-
 
     public static boolean row_checker(int row, char value, char[][] board)
     {
