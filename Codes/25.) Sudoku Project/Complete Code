@@ -5,10 +5,10 @@ public class Sudoku
     public static void main(String[] args)
     {
         Scanner input = new Scanner(System.in);
-        char play_again = 'y'; // Used to either end the program, or continue running.
+        char play_again = 'y';   // Used to either end the program, or continue running.
         int row, column;
-        char difficulty; // What difficulty the user wants to play with.
-        char value; // The value that will be entered into the board.
+        char difficulty;   // What difficulty the user wants to play with.
+        char value;   // The value that will be entered into the board.
 
         do
         {
@@ -17,12 +17,12 @@ public class Sudoku
             difficulty = input.next().charAt(0);
             difficulty = Character.toLowerCase(difficulty);
 
-            char[][] board = board_generator(difficulty); // generates board based on chosen difficulty.
+            char[][] board = board_generator(difficulty);   // generates board based on chosen difficulty.
 
             // To prevent user from changing the hard-coded values, a separate 2D Boolean array has been created
             // that keeps track of the hard-coded values.
             boolean[][] hard_coded_values = new boolean[9][9];
-            int total_values = 0; // Used to end the current game once the board has been filled.
+            int total_values = 0;   // Used to end the current game once the board has been filled.
 
             for (int i = 0; i <= 8; i++)
                 for (int j = 0; j <= 8; j++)
@@ -39,18 +39,17 @@ public class Sudoku
                         hard_coded_values[i][j] = false;
                 }
 
-
-            while (total_values<81) // while the board isn't complete. Do-while would also work here.
+            while (total_values<81)   // while the board isn't complete. Do-while would also work here.
             {
-                print_board(board); // Prints board, including whenever user enters or updates a value.
+                print_board(board);   // Prints board, including whenever user enters or updates a value.
                 System.out.println();
 
-                char change_value; // In case the user enters a value that doesn't pass the three Sudoku laws, the user will be given the choice if they want to try a new value, or try to enter a value in a different index.
-                boolean incorrect; // Used to confirm the user is entering a value in a legal index position.
+                char change_value;   // In case the user enters a value that doesn't pass the three Sudoku laws, the user will be given the choice if they want to try a new value, or try to enter a value in a different index.
+                boolean incorrect;   // Used to confirm the user is entering a value in a legal index position.
                 do
                 {
-                    row = row_pos(); // gets row position from user.
-                    column = column_pos(); // gets column position from user.
+                    row = row_pos();   // gets row position from user.
+                    column = column_pos();   // gets column position from user.
                     System.out.println();
                     incorrect = invalid_row_column(row, column, hard_coded_values);
                 } while (incorrect == true);
@@ -59,9 +58,9 @@ public class Sudoku
 
                 do
                 {
-                    value = proper_value(); // Gets a value to enter into the board from the user.
+                    value = proper_value();   // Gets a value to enter into the board from the user.
                     if (row_checker(row, value, board) == false && column_checker(column, value, board) == false && _3by3_checker(row, column, value, board) == false)
-                    // if the value passes the three Sudoku laws.
+                      // if the value passes the three Sudoku laws.
                     {
                         if (board[row][column] == ' ')
                             // if the user is entering a value into an empty space.
@@ -72,7 +71,8 @@ public class Sudoku
                         break;
                     }
                     else
-                    { // The value the user entered is illegal.
+                    // The value the user entered is illegal.
+                    {
                         System.out.println("Your value does not pass all three checks. Would you like to choose another value, or choose another position to add/change a value?");
                         System.out.print("Enter 'y' to try another value, or 'n' to try another index position: ");
                         change_value = input.next().charAt(0);
@@ -81,7 +81,9 @@ public class Sudoku
                 } while (change_value == 'y');
             }
 
-            System.out.println(); // Game is complete. Now the user can choose if he wants to play a new game, or not.
+            System.out.println();
+            // Game is complete. Now the user can choose if he wants to play a new game, or not.
+
             System.out.println("Congratulations! You won!");
             System.out.println("Would you like to play again?");
             System.out.println("Press 'y' if you'd like to play again, else press 'n'.");
@@ -92,8 +94,10 @@ public class Sudoku
     }
 
 
+
     public static char[][] board_generator(char diff)
-    { // Generates four different boards based on four different difficulty levels.
+    // Generates four different boards based on four different difficulty levels.
+    {
         if (diff == 'e')
         {
             char[][] board = {
@@ -153,7 +157,8 @@ public class Sudoku
     }
 
     public static void print_board (char[][] board)
-    { // Prints the board, including everytime the user updates the board.
+    // Prints the board, including everytime the user updates the board.
+    {
         System.out.println("    1  2  3   4  5  6   7  8  9  ");
         for (int i = 0; i <= 8; i++)
         {
@@ -175,7 +180,8 @@ public class Sudoku
 
 
     public static int row_pos ()
-    { // Gets the row index from the user. Checks if it's a valid row.
+    // Gets the row index from the user. Checks if it's a valid row, and if it isn't, prompts user to enter it again.
+    {
         Scanner input = new Scanner(System.in);
         boolean correct = false;
         while(correct == false)
@@ -195,8 +201,10 @@ public class Sudoku
         }
         return 000;
     }
+
     public static int column_pos ()
-    { // Gets column index from the user. Checks if it's a valid column.
+    // Gets the column index from the user. Checks if it's a valid column, and if it isn't, prompts user to enter it again.
+    {
         Scanner input = new Scanner(System.in);
         boolean correct = false;
         while(correct == false)
@@ -216,8 +224,10 @@ public class Sudoku
         }
         return 000;
     }
+
     public static boolean invalid_row_column (int row, int column, boolean[][] values)
-    { // Checks if the chosen row and column number doesn't have a hard-coded value. If it does, user is prompted to enter a new row and column.
+    // Checks if the chosen row and column number doesn't have a hard-coded value. If it does, user is prompted to enter a new row and column.
+    {
         if (values[row][column] == true)
         {
             System.out.println("Invalid row and/or column number: You can not change the initial values of the board!");
@@ -231,7 +241,8 @@ public class Sudoku
 
 
     public static char proper_value ()
-    { // Gets the value the user wants to enter into his chosen row and column.
+    // Gets the value the user wants to enter into his chosen row and column.
+    {
         Scanner input = new Scanner(System.in);
         boolean valid = false;
         while (valid == false)
@@ -251,7 +262,8 @@ public class Sudoku
     }
 
     public static boolean row_checker(int row, char value, char[][] board)
-    { // Checks if the user entered value passes the row law of Sudoku.
+    // Checks if the user entered value passes the row law of Sudoku.
+    {
         for (int count = 0; count <= 8; count++)
             if (board[row][count] == (char)(value))
                 return true;
@@ -260,7 +272,8 @@ public class Sudoku
     }
 
     public static boolean column_checker(int column, char value, char[][] board)
-    { // Checks if the user entered value passes the column law of Sudoku.
+    // Checks if the user entered value passes the column law of Sudoku.
+    {
         for (int count = 0; count <= 8; count++)
             if (board[count][column] == (char)(value))
                 return true;
@@ -269,7 +282,8 @@ public class Sudoku
     }
 
     public static boolean _3by3_checker(int row, int column, char value, char[][] board)
-    { // Checks if the user entered value passes the 3x3 law of Sudoku.
+    // Checks if the user entered value passes the 3x3 law of Sudoku.
+    {
         int row_count = -1, column_count = -1;
         int count = 0;
 
