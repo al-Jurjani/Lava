@@ -1,0 +1,8 @@
+public static boolean column_checker(int column, char value, char[][] board)
+    { // Checks if the user entered value passes the column law of Sudoku.
+        for (int count = 0; count <= 8; count++)
+            if (board[count][column] == (char)(value))
+                return true;
+
+        return false;
+    }
