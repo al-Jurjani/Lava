@@ -1,0 +1,21 @@
+public static int column_pos ()
+    { // Gets column index from the user. Checks if it's a valid column.
+        Scanner input = new Scanner(System.in);
+        boolean correct = false;
+        while(correct == false)
+        {
+            System.out.println("What column do you want to enter/change your value in?");
+            System.out.print("Column: ");
+            System.out.println();
+            int column = input.nextInt() - 1;
+            if (column < 0 || column > 8)
+            {
+                System.out.println("Invalid Column number: out of bounds!");
+                System.out.println("Please enter your Column number again.");
+                System.out.println();
+            }
+            else
+                return column;
+        }
+        return 000;
+    }
