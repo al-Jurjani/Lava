@@ -1,4 +1,4 @@
-import java.util.Scanner;
+
 
 public class Sudoku
 {
@@ -30,8 +30,10 @@ public class Sudoku
                     hard_coded_values[i][j] = false;
                     if (board[i][j] != ' ')
                     {
-                        hard_coded_values[i][j] = true; // if the board has a value at the index, it's boolean will be true in this 2d array.
-                        total_values++; // total values increases by 1.
+                        hard_coded_values[i][j] = true;
+                        // if the board has a value at the index, it's boolean will be true in this 2d array.
+                        total_values++;
+                        // total values increases by 1.
                     }
                     else
                         hard_coded_values[i][j] = false;
@@ -59,10 +61,14 @@ public class Sudoku
                 {
                     value = proper_value(); // Gets a value to enter into the board from the user.
                     if (row_checker(row, value, board) == false && column_checker(column, value, board) == false && _3by3_checker(row, column, value, board) == false)
-                    { // if the value passes the three Sudoku laws.
-                        if (board[row][column] == ' ') // if the user is entering a value into an empty space.
-                            total_values++; // total values will only be incremented if the user is adding a new value, not if he's updating one.
-                        board[row][column] = value; // the board will be updated with the value the user entered.
+                    // if the value passes the three Sudoku laws.
+                    {
+                        if (board[row][column] == ' ')
+                            // if the user is entering a value into an empty space.
+                            total_values++;
+                            // total values will only be incremented if the user is adding a new value, not if he's updating one.
+                        board[row][column] = value;
+                        // the board will be updated with the value the user entered.
                         break;
                     }
                     else
@@ -92,7 +98,7 @@ public class Sudoku
         {
             char[][] board = {
                     {' ',' ',' ',' ',' ','2',' ','9',' '},
-                    {'1',' ',' ',' ',' ',' ',' ', '5',' '},
+                    {'1',' ',' ',' ',' ',' ',' ','5',' '},
                     {' ','6','9','8','1',' ','7',' ','3'},
                     {' ','2','1',' ','3','7',' ',' ',' '},
                     {' ',' ',' ',' ','9',' ','2','4','1'},
