@@ -1,0 +1,11 @@
+public static boolean invalid_row_column (int row, int column, boolean[][] values)
+    { // Checks if the chosen row and column number doesn't have a hard-coded value. If it does, user is prompted to enter a new row and column.
+        if (values[row][column] == true)
+        {
+            System.out.println("Invalid row and/or column number: You can not change the initial values of the board!");
+            System.out.println("Please enter your row and column number again.");
+            System.out.println();
+            return true;
+        }
+        return false;
+    }
