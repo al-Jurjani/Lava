@@ -1,0 +1,19 @@
+public static char proper_value ()
+    { // Gets the value the user wants to enter into his chosen row and column.
+        Scanner input = new Scanner(System.in);
+        boolean valid = false;
+        while (valid == false)
+        {
+            System.out.print("Enter the value you want to enter/replace current value with: ");
+            int value = input.nextInt();
+            if (value < 1 || value > 9)
+            {
+                System.out.println("Invalid value: out of expected range!");
+                System.out.println("Please enter your value again.");
+                System.out.println();
+            }
+            else
+                return (char)(value+48);
+        }
+        return ' ';
+    }
