@@ -1,0 +1,8 @@
+public static boolean row_checker(int row, char value, char[][] board)
+    { // Checks if the user entered value passes the row law of Sudoku.
+        for (int count = 0; count <= 8; count++)
+            if (board[row][count] == (char)(value))
+                return true;
+
+        return false;
+    }
