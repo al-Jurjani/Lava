@@ -1,4 +1,7 @@
+// Zuhair Farhan
+// 27100
 
+import java.util.Scanner;
 
 public class Sudoku
 {
@@ -12,7 +15,7 @@ public class Sudoku
 
         do
         {
-            System.out.println("What difficulty level do you want to play with?");
+            System.out.println("What difficulty level do you want to play with? Each level has only one valid solution.");
             System.out.print("Press 'e' for easy, 'm' for medium, 'h' for hard, or 'x' for expert: ");
             difficulty = input.next().charAt(0);
             difficulty = Character.toLowerCase(difficulty);
