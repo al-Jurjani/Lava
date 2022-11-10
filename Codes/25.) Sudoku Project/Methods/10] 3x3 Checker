@@ -1,0 +1,21 @@
+public static boolean _3by3_checker(int row, int column, char value, char[][] board)
+    { // Checks if the user entered value passes the 3x3 law of Sudoku.
+        int row_count = -1, column_count = -1;
+        int count = 0;
+
+        while (row_count == -1 || column_count == -1)
+        {
+            if (row >= count && row <= count + 2)
+                row_count = count;
+            if (column >= count && column <= count + 2)
+                column_count = count;
+            count += 3;
+        }
+
+        for (int i = row_count; i <= row_count+2; i++)
+            for (int j = column_count; j <= column_count+2; j++)
+                if (board[i][j] == value)
+                    return true;
+
+        return false;
+    }
