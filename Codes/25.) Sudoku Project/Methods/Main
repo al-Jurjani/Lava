@@ -1,0 +1,88 @@
+public static void main(String[] args)
+    {
+        Scanner input = new Scanner(System.in);
+        char play_again = 'y'; // Used to either end the program, or continue running.
+        int row, column;
+        char difficulty; // What difficulty the user wants to play with.
+        char value; // The value that will be entered into the board.
+
+        do
+        {
+            System.out.println("What difficulty level do you want to play with?");
+            System.out.print("Press 'e' for easy, 'm' for medium, 'h' for hard, or 'x' for expert: ");
+            difficulty = input.next().charAt(0);
+            difficulty = Character.toLowerCase(difficulty);
+
+            char[][] board = board_generator(difficulty); // generates board based on chosen difficulty.
+
+            // To prevent user from changing the hard-coded values, a separate 2D Boolean array has been created
+            // that keeps track of the hard-coded values.
+            boolean[][] hard_coded_values = new boolean[9][9];
+            int total_values = 0; // Used to end the current game once the board has been filled.
+
+            for (int i = 0; i <= 8; i++)
+                for (int j = 0; j <= 8; j++)
+                {
+                    hard_coded_values[i][j] = false;
+                    if (board[i][j] != ' ')
+                    {
+                        hard_coded_values[i][j] = true;
+                        // if the board has a value at the index, it's boolean will be true in this 2d array.
+                        total_values++;
+                        // total values increases by 1.
+                    }
+                    else
+                        hard_coded_values[i][j] = false;
+                }
+
+
+            while (total_values<81) // while the board isn't complete. Do-while would also work here.
+            {
+                print_board(board); // Prints board, including whenever user enters or updates a value.
+                System.out.println();
+
+                char change_value; // In case the user enters a value that doesn't pass the three Sudoku laws, the user will be given the choice if they want to try a new value, or try to enter a value in a different index.
+                boolean incorrect; // Used to confirm the user is entering a value in a legal index position.
+                do
+                {
+                    row = row_pos(); // gets row position from user.
+                    column = column_pos(); // gets column position from user.
+                    System.out.println();
+                    incorrect = invalid_row_column(row, column, hard_coded_values);
+                } while (incorrect == true);
+
+                System.out.println();
+
+                do
+                {
+                    value = proper_value(); // Gets a value to enter into the board from the user.
+                    if (row_checker(row, value, board) == false && column_checker(column, value, board) == false && _3by3_checker(row, column, value, board) == false)
+                    // if the value passes the three Sudoku laws.
+                    {
+                        if (board[row][column] == ' ')
+                            // if the user is entering a value into an empty space.
+                            total_values++;
+                            // total values will only be incremented if the user is adding a new value, not if he's updating one.
+                        board[row][column] = value;
+                        // the board will be updated with the value the user entered.
+                        break;
+                    }
+                    else
+                    { // The value the user entered is illegal.
+                        System.out.println("Your value does not pass all three checks. Would you like to choose another value, or choose another position to add/change a value?");
+                        System.out.print("Enter 'y' to try another value, or 'n' to try another index position: ");
+                        change_value = input.next().charAt(0);
+                        change_value = Character.toLowerCase(change_value);
+                    }
+                } while (change_value == 'y');
+            }
+
+            System.out.println(); // Game is complete. Now the user can choose if he wants to play a new game, or not.
+            System.out.println("Congratulations! You won!");
+            System.out.println("Would you like to play again?");
+            System.out.println("Press 'y' if you'd like to play again, else press 'n'.");
+            play_again = input.next().charAt(0);
+            play_again = Character.toLowerCase(play_again);
+            System.out.println();
+        } while (play_again == 'y');
+    }
