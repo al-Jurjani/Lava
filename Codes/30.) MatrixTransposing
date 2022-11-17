@@ -1,0 +1,60 @@
+package matrixtransposing;
+
+// Zuhair Farhan
+// 27100
+
+import java.util.*;
+
+public class MatrixTransposing {
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.print("Enter the number of rows and column of your matrix: ");
+        int row = input.nextInt();
+        int col = row;
+        int temp;
+        
+        int[][] matrix = matrix_generator(row, col);
+        System.out.println();
+        matrix_printer(matrix);
+        
+        for (int i = 0; i < matrix.length; i++) 
+        {
+            for (int j = 0; j < matrix.length; j++) 
+            {
+                if (i != j)
+                    if (i > j) 
+                    {
+                        temp = matrix[i][j];
+                        matrix[i][j] = matrix[j][i];
+                        matrix[j][i] = temp;
+                    }
+            }
+        }
+        matrix_printer(matrix);
+    }
+
+    public static int[][] matrix_generator (int row, int column) 
+    {
+        int[][] matrix = new int[row][column];
+        for (int i = 0; i < row; i++) 
+            for (int j = 0; j < column; j++) 
+                matrix[i][j] = (int)(Math.random()*9);
+        
+        return matrix;
+    } 
+    
+    public static void matrix_printer (int[][] matrix) 
+    {
+        for (int i = 0; i < matrix.length ; i++) 
+        {
+            for (int j = 0; j < matrix[i].length; j++) 
+            {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+}
