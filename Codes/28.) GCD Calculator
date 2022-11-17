@@ -1,0 +1,25 @@
+package gcdcalculator;
+
+// Zuhair Farhan
+// 27100
+
+import java.util.*;
+
+public class GCDCalculator {
+    public static void main(String[] args) 
+    {
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("Enter two integers. We will return the Greatest Common Divisor of the two: ");
+        System.out.println("The GCD is: " + gcd(input.nextInt(), input.nextInt()));
+        
+    }
+    
+    public static int gcd(int n1, int n2) 
+    {
+        if (n2 != 0)
+            return gcd(n2, n1 % n2); 
+        return n1;
+    }
+}
