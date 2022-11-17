@@ -1,0 +1,38 @@
+package removex;
+
+// Zuhair Farhan
+// 27100
+
+import java.util.*;
+
+public class RemoveX {
+    public static void main(String[] args) 
+    {
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("Enter a string.: ");
+        String sentence = input.nextLine();
+        System.out.println("Enter a character you want to remove from your string: ");
+        char remove_char = input.next().charAt(0);
+        
+        System.out.println("Your new String is: ");
+        System.out.println(remove(sentence, remove_char));
+        
+        System.out.println("We removed " + (sentence.length() - remove(sentence, remove_char).length()) + " characters!");
+    }
+    
+    public static String remove(String line, char remove_char) 
+    {
+        if (line.length() == 1) 
+            if (line.charAt(0) == remove_char)
+                return "";
+            else
+                return line;
+        else  
+            if (line.charAt(0) == remove_char)
+                return "" + remove(line.substring(1), remove_char);
+            else
+                return line.charAt(0) + remove(line.substring(1), remove_char);
+    }
+}
