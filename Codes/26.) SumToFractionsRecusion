@@ -1,0 +1,28 @@
+package sumtofractionsrecursion;
+
+// Zuhair Farhan
+// 27100
+
+import java.util.*;
+
+public class SumToFractionsRecursion 
+{
+    public static void main(String[] args) 
+    {
+
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("Enter a number. We'll return the sum of the first n reciprocals: ");
+        System.out.println(harmonic(input.nextInt()));
+    }
+    
+    public static double harmonic(int n) 
+    {
+        if (n == 0)
+            return 0;
+        else if (n == 1)
+            return 1;
+        else
+            return 1.0/n + harmonic(n-1);
+    } 
+}
