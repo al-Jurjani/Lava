@@ -1,0 +1,68 @@
+package matrixmultiplication;
+
+// Zuhair Farhan
+// 27100
+
+import java.util.*;
+
+public class MatrixMultiplication {
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.print("Enter the number of rows for Matrix 1: ");
+        int rows1 = input.nextInt();
+        System.out.print("Enter the number of columns for Matrix 1: ");
+        int cols1 = input.nextInt();
+        
+        System.out.println();
+        
+        System.out.print("Enter the number of rows for Matrix 2: ");
+        int rows2 = input.nextInt();
+        System.out.print("Enter the number of columns for Matrix 2: ");
+        int cols2 = input.nextInt();
+        
+        System.out.println();
+        
+        if (cols1 != rows2)
+            System.out.println("Your matrices are not multipliyable because of their dimensions.");
+        else 
+        {
+            int[][] matrix1 = matrix_generator(rows1, cols1);
+            matrix_printer(matrix1);
+            int[][] matrix2 = matrix_generator(rows2, cols2);
+            matrix_printer(matrix2);
+            int[][] matrix3 = new int[rows1][cols2];
+            
+            for (int k = 0; k < cols1; k++)
+                for (int i = 0; i < rows1; i++)
+                    for (int j = 0; j < cols2; j++)
+                        matrix3[i][j] += (matrix1[i][k]) * (matrix2[k][j]);
+            
+            matrix_printer(matrix3);
+        }
+    }
+    
+    public static int[][] matrix_generator (int row, int column) 
+    {
+        int[][] matrix = new int[row][column];
+        for (int i = 0; i < row; i++) 
+            for (int j = 0; j < column; j++) 
+                matrix[i][j] = (int)(Math.random()*9);
+        
+        return matrix;
+    } 
+    
+    public static void matrix_printer (int[][] matrix) 
+    {
+        for (int i = 0; i < matrix.length ; i++) 
+        {
+            for (int j = 0; j < matrix[i].length; j++) 
+            {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+}
