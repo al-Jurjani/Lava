@@ -1,0 +1,93 @@
+package biggestrow.col;
+
+// Zuhair Farhan
+// 27100
+
+import java.util.*;
+
+public class BiggestRowCol 
+{
+    public static void main(String[] args) 
+    {
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.print("Enter the number of rows you want in your matrix: ");
+        int rows = input.nextInt();
+        System.out.print("Enter the number of columns you want in your matrix: ");
+        int columns = input.nextInt();
+        System.out.println();
+        
+        int[][] matrix = randomMatrixValues(rows, columns);
+        print_matrix(matrix);
+        
+        System.out.println("The row with the most number of 1's is: " + maxOnesInARow(matrix));
+        System.out.println("The Columns with the most number of 1's is: " + maxOnesInACol(matrix));
+    }
+    
+    public static int[][] randomMatrixValues (int rows, int columns) 
+    {
+        int[][] matrix = new int[rows][columns];
+        for (int i = 0; i < rows; i++)
+            for (int j = 0; j < columns; j++)
+               matrix[i][j] = (int) ((1 + (int)(Math.random() * 2))-1); 
+        return matrix;
+    }
+    
+    public static void print_matrix (int[][] matrix) 
+    {
+        for (int i = 0; i < matrix.length; i++) 
+        {
+            for (int j = 0; j < matrix[i].length; j++) 
+                System.out.print(matrix[i][j]);
+            System.out.println();
+        }
+    }
+    
+    public static int maxOnesInARow (int[][] matrix) 
+    {
+        int numOfOnes = 0;
+        int maxNumOfOnes = 0;
+        int biggestRow = 0;
+        
+        for (int i = 0; i < matrix.length; i++) 
+        {
+            for (int j = 0; j < matrix[i].length; j++) 
+            {
+                if (matrix[i][j] == 1)
+                    numOfOnes++;
+            }
+            if (numOfOnes > maxNumOfOnes) 
+            {
+                maxNumOfOnes = numOfOnes;
+                biggestRow = i;
+            }
+            numOfOnes = 0;
+        }
+        
+        return biggestRow + 1;
+    }
+    
+    public static int maxOnesInACol (int[][] matrix) // Doesn't work if there are more columns than rows.
+    {
+        int numOfOnes = 0;
+        int maxNumOfOnes = 0;
+        int biggestCol = 0;
+        
+        for (int i = 0; i < matrix.length; i++) 
+        {
+            for (int j = 0; j < matrix[i].length; j++) 
+            {
+                if (matrix[j][i] == 1)
+                    numOfOnes++;
+            }
+            if (numOfOnes > maxNumOfOnes) 
+            {
+                maxNumOfOnes = numOfOnes;
+                biggestCol = i;
+            }
+            numOfOnes = 0;
+        }
+        return biggestCol + 1;
+    }
+}
