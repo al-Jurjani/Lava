@@ -1,0 +1,27 @@
+package alphanumeric;
+
+// Zuhair Farhan
+// 27100
+
+import java.util.*;
+
+public class Alphanumeric 
+{
+    public static void main(String[] args) 
+    {
+        
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter a sentence. We will print out the alphanumerics in the sentence!");
+        System.out.println("Enter your sentence: ");
+        String sentence = input.nextLine();
+        System.out.println();
+        
+        String[] words = sentence.split(" ");
+        
+        for (int i = 0; i < words.length; i++) 
+            if ((int)words[i].charAt(0) >= 48 && (int)words[i].charAt(0) <= 57) {
+                System.out.println(words[i]);
+                System.out.println();
+            }
+    }
+}
