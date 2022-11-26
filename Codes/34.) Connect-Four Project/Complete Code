@@ -1,0 +1,165 @@
+import java.util.*;
+
+public class connect_four
+{
+    public static void main(String[] args)
+    {
+        Scanner input = new Scanner(System.in);
+        char play_again;
+
+        do
+        {
+            boolean[][] board_position_tracker = new boolean[6][7];
+            char[][] board = board_generation();
+            char current_player;
+            int slots_remaining = 42;
+            int column, row;
+
+            while (slots_remaining >=1)
+            {
+                print_board(board);
+                current_player = current_player(slots_remaining);
+                column = column_pos(board_position_tracker);
+                row = board_updater(board, board_position_tracker, current_player, column);
+                slots_remaining--;
+
+                if (horizontal_checker(board, row, current_player) == true || vertical_checker(board, column, current_player) == true)
+                {
+                    print_board(board);
+                    System.out.println("Congratulations player " + current_player + "! You won!");
+                    break;
+                }
+            }
+
+            System.out.println();
+            System.out.println("Would you like to play again?");
+            System.out.println("Press 'y' if you'd like to play again, else press 'n'.");
+            play_again = input.next().charAt(0);
+            play_again = Character.toLowerCase(play_again);
+            System.out.println();
+        } while (play_again == 'y');
+    }
+
+
+
+    public static char[][] board_generation ()
+    {
+        char[][] board =
+                {
+                        {' ', ' ', ' ', ' ', ' ', ' ', ' '},
+                        {' ', ' ', ' ', ' ', ' ', ' ', ' '},
+                        {' ', ' ', ' ', ' ', ' ', ' ', ' '},
+                        {' ', ' ', ' ', ' ', ' ', ' ', ' '},
+                        {' ', ' ', ' ', ' ', ' ', ' ', ' '},
+                        {' ', ' ', ' ', ' ', ' ', ' ', ' '},
+                };
+        return board;
+    }
+
+    public static void print_board (char[][] board)
+    {
+        System.out.println("    1   2   3   4   5   6   7   ");
+        System.out.println("  _____________________________");
+        for (int i = 0; i <= 5; i++)
+        {
+            System.out.print(i + 1 + " |");
+            for (int j = 0; j <= 6; j++)
+            {
+                    System.out.print(" " + board[i][j] + " |");
+            }
+            System.out.println();
+        }
+        System.out.println("  _____________________________");
+        System.out.println();
+    }
+
+    public static char current_player (int slots_remaining)
+    {
+        if (slots_remaining % 2 == 0)
+        {
+            System.out.println("Player 1! Enter your slot 'X' into a valid column.");
+            return 'X';
+        }
+        else
+        {
+            System.out.println("Player 2! Enter your slot 'O' into a valid column.");
+            return 'O';
+        }
+    }
+
+
+
+    public static int column_pos (boolean[][] token_tracker)
+    {
+        Scanner input = new Scanner(System.in);
+        boolean saver = false;
+        int column = 0;
+        do
+        {
+            try
+            {
+                System.out.println();
+                System.out.println("What column do you want to enter your token in?");
+                System.out.print("Column: ");
+                column = input.nextInt() - 1;
+                System.out.println();
+                saver = true;
+            }
+            catch (Exception e)
+            {
+                System.out.println("An error occurred! Please try again.");
+                System.out.println();
+                input.next();
+            }
+        } while (saver == false);
+
+        if (column < 0 || column > 6)
+        {
+            System.out.println("Invalid Column number: out of bounds!");
+            System.out.println("Please enter your Column number again.");
+            System.out.println();
+            return column_pos(token_tracker);
+        }
+        else
+        {
+            if(token_tracker[0][column] == true)
+            {
+                System.out.println("The column has been entirely filled! Please choose another column.");
+                return column_pos(token_tracker);
+            }
+            return column;
+        }
+    }
+
+    public static int board_updater (char[][] board, boolean[][] token_tracker, char current_player, int column)
+    {
+        for (int i = 5; i >= 0; i--)
+            if (token_tracker[i][column] == false)
+            {
+                board[i][column] = current_player;
+                token_tracker[i][column] = true;
+                System.out.println();
+                return i;
+            }
+        return 0;
+    }
+
+
+
+    public static boolean vertical_checker (char[][] board, int column, char current_player)
+    {
+        for (int i = 0; i <=2; i++)
+            if (board[i][column] == current_player && board[i+1][column] == current_player && board[i+2][column] == current_player && board[i+3][column] == current_player)
+                return true;
+        return false;
+    }
+
+    public static boolean horizontal_checker (char[][] board, int row, char current_player)
+    {
+        for (int i = 0; i <=3; i++)
+            if (board[row][i] == current_player && board[row][i+1] == current_player && board[row][i+2] == current_player && board[row][i+3] == current_player)
+                return true;
+        return false;
+    }
+    
+}
