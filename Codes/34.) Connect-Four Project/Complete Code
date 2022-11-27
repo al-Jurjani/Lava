@@ -11,7 +11,7 @@ public class connect_four
         {
             boolean[][] board_position_tracker = new boolean[6][7];
             char[][] board = board_generation();
-            char current_player;
+            char current_player = '-';
             int slots_remaining = 42;
             int column, row;
 
@@ -23,20 +23,10 @@ public class connect_four
                 row = board_updater(board, board_position_tracker, current_player, column);
                 slots_remaining--;
 
-                if (horizontal_checker(board, row, current_player) == true || vertical_checker(board, column, current_player) == true)
-                {
-                    print_board(board);
-                    System.out.println("Congratulations player " + current_player + "! You won!");
+                if (horizontal_checker(board, row, current_player) == true || vertical_checker(board, column, current_player) == true || diagonal_checker(board, current_player) == true)
                     break;
-                }
             }
-
-            System.out.println();
-            System.out.println("Would you like to play again?");
-            System.out.println("Press 'y' if you'd like to play again, else press 'n'.");
-            play_again = input.next().charAt(0);
-            play_again = Character.toLowerCase(play_again);
-            System.out.println();
+            play_again = victory_message_play_again(board, current_player);
         } while (play_again == 'y');
     }
 
@@ -92,10 +82,8 @@ public class connect_four
     public static int column_pos (boolean[][] token_tracker)
     {
         Scanner input = new Scanner(System.in);
-        boolean saver = false;
         int column = 0;
-        do
-        {
+
             try
             {
                 System.out.println();
@@ -103,15 +91,15 @@ public class connect_four
                 System.out.print("Column: ");
                 column = input.nextInt() - 1;
                 System.out.println();
-                saver = true;
             }
             catch (Exception e)
             {
                 System.out.println("An error occurred! Please try again.");
                 System.out.println();
                 input.next();
+                return column_pos(token_tracker);
             }
-        } while (saver == false);
+
 
         if (column < 0 || column > 6)
         {
@@ -161,5 +149,42 @@ public class connect_four
                 return true;
         return false;
     }
-    
+
+    public static boolean diagonal_checker (char[][] board, char current_player)
+    {
+
+        // Checks Diagonals that go upwards.
+        for(int i = 3; i < board.length; i++)
+            for(int j = 0; j < board[j].length - 3; j++)
+                if (board[i][j] == current_player   &&
+                        board[i-1][j+1] == current_player &&
+                        board[i-2][j+2] == current_player &&
+                        board[i-3][j+3] == current_player)
+                    return true;
+
+        // Checks Diagonals that go downwards.
+        for(int i = 0; i < board.length - 3; i++)
+            for(int j = 0; j < board[i].length - 3; j++)
+                if (board[i][j] == current_player && board[i+1][j+1] == current_player && board[i+2][j+2] == current_player && board[i+3][j+3] == current_player)
+                    return true;
+
+        return false;
+    }
+
+
+
+    public static char victory_message_play_again (char[][] board, char current_player)
+    {
+        Scanner input = new Scanner(System.in);
+        char play_again;
+
+        print_board(board);
+        System.out.println("Congratulations player " + current_player + "! You won!");
+
+        System.out.println();
+        System.out.println("Would you like to play again?");
+        System.out.println("Press 'y' if you'd like to play again, else press 'n'.");
+        play_again = input.next().charAt(0);
+        return Character.toLowerCase(play_again);
+    }
 }
