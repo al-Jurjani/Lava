@@ -1,20 +1,36 @@
-import java.util.*;
+
 
 public class connect_four
 {
     public static void main(String[] args)
     {
         Scanner input = new Scanner(System.in);
-        char play_again;
+        char play_again;   // Used to control outer loop, which decides whether (new) game will be played or not.
 
+        /*
+        The initialisation of the important variables is done within the outer do-while loop.
+        The outer-loop runs once per game. It is there to ensure users can play again, if they choose to.
+        */
         do
         {
-            boolean[][] board_position_tracker = new boolean[6][7];
+            boolean[][] board_position_tracker = new boolean[6][7];   // Used to track the positions in which there is already a player token 'X' or 'O'.
             char[][] board = board_generation();
             char current_player = '-';
-            int slots_remaining = 42;
+            int slots_remaining = 42;   // Used to keep track of the remaining slots in the board. Decrements after each turn.
             int column, row;
 
+
+            /*
+            In the inner while loop, the actual game runs.
+            There are six main things that happen:
+            1 - The board is printed for each turn.
+            2 - The current player token ('X' or 'O') is calculated, and the users are notified who's turn it is.
+            3 - The user is asked to enter a column number.
+            4 - The board is updated with the token the user entered in his designated column, and the row it was placed in it saved in a variable.
+            5 - the remaining empty spaces remaining is decremented by 1.
+            6 - Based on the last token added, it is checked if a 4-in-a-row has been achieved. If so, the inner loop is terminated. Else, the game continues.
+            The game continues until either the inner loop is terminated, meaning one of the players has won, or no more empty slots remain, meaning the game is a tie.
+            */
             while (slots_remaining >=1)
             {
                 print_board(board);
@@ -26,12 +42,21 @@ public class connect_four
                 if (horizontal_checker(board, row, current_player) == true || vertical_checker(board, column, current_player) == true || diagonal_checker(board, current_player) == true)
                     break;
             }
-            play_again = victory_message_play_again(board, current_player);
+
+            /*
+            After the game ends, the appropriate message is sent to the players, and then they are asked if they want to play again.
+            If so, a new game will begin, else, the program will terminate.
+            */
+            play_again = victory_message_play_again(board, current_player, slots_remaining);
         } while (play_again == 'y');
     }
 
 
 
+    /*
+    Used to generate the board.
+    That's it.
+    */
     public static char[][] board_generation ()
     {
         char[][] board =
@@ -46,6 +71,10 @@ public class connect_four
         return board;
     }
 
+    /*
+    Used to print the board.
+    That's it.
+    */
     public static void print_board (char[][] board)
     {
         System.out.println("    1   2   3   4   5   6   7   ");
@@ -63,6 +92,10 @@ public class connect_four
         System.out.println();
     }
 
+    /*
+    Used to calculate the current player, 1 or 2, based on the remaining empty slots remaiming in the board.
+    Player 1 plays with 'X', whereas player 2 plays with 'O'.
+    */
     public static char current_player (int slots_remaining)
     {
         if (slots_remaining % 2 == 0)
@@ -79,6 +112,14 @@ public class connect_four
 
 
 
+    /*
+    Used to take the input of the desired column the current player wants to enter their token in.
+    There is a potential exception, and two possible errors that can take place:
+    1 - The user enters a String, when the required input is an integer. This is solved by a try+catch block.
+    2 - The user enters an Integer, but it is outside the given range of columns. This is solved by an if statement.
+    3 - The user enters an integer which also a valid column, but that column is already filled. This is solved by another if statement.
+    In all three cases, the player will be asked again to enter their desired column number though recursive calls.
+    */
     public static int column_pos (boolean[][] token_tracker)
     {
         Scanner input = new Scanner(System.in);
@@ -119,6 +160,10 @@ public class connect_four
         }
     }
 
+    /*
+    Used to simply update the board with the token of the current player, in the desired column they wanted.
+    It returns the row in which the token was entered into. This is required to calculate the win conditions of the game.
+    */
     public static int board_updater (char[][] board, boolean[][] token_tracker, char current_player, int column)
     {
         for (int i = 5; i >= 0; i--)
@@ -134,6 +179,10 @@ public class connect_four
 
 
 
+    /*
+    Calculates the vertical win condition by taking the column the user last entered his token into.
+    Returns true if 4-in-a-row, else return false.
+    */
     public static boolean vertical_checker (char[][] board, int column, char current_player)
     {
         for (int i = 0; i <=2; i++)
@@ -142,6 +191,10 @@ public class connect_four
         return false;
     }
 
+    /*
+    Calculates the horizontal win condition by taking the row in which the last token was entered into.
+    Returns true if 4-in-a-row, else return false.
+    */
     public static boolean horizontal_checker (char[][] board, int row, char current_player)
     {
         for (int i = 0; i <=3; i++)
@@ -150,6 +203,10 @@ public class connect_four
         return false;
     }
 
+    /*
+    Calculates the upward and downward diagonal. This runs for each turn of the game (admittedly, slightly inefficient, but gets the job done).
+    Returns true if 4-in-a-row, else return false.
+    */
     public static boolean diagonal_checker (char[][] board, char current_player)
     {
 
@@ -173,13 +230,25 @@ public class connect_four
 
 
 
-    public static char victory_message_play_again (char[][] board, char current_player)
+    /*
+    Prints the appropriate victory message, or draw message.
+    Then asks the players if they want to play again.
+    */
+    public static char victory_message_play_again (char[][] board, char current_player, int slots_remaining)
     {
         Scanner input = new Scanner(System.in);
         char play_again;
 
-        print_board(board);
-        System.out.println("Congratulations player " + current_player + "! You won!");
+        if (slots_remaining == 0)
+        {
+            print_board(board);
+            System.out.println("The game is a Tie!");
+        }
+        else
+        {
+            print_board(board);
+            System.out.println("Congratulations player " + current_player + "! You won!");
+        }
 
         System.out.println();
         System.out.println("Would you like to play again?");
