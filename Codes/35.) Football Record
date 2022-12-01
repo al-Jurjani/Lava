@@ -1,0 +1,90 @@
+package footballrecord;
+
+// Zuhair Farhan
+// 27100
+
+import java.util.*;
+
+public class FootballRecord {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        String matches = "Barca 1 Seville 0,Madrid 7 Barca 1,Barca 3 Valenica 2,Barca 2 Betis 2,Athletico 4 Barca 0,Vilarel 1 Barca 2";
+
+        double wins = 0.0;
+        double draws = 0.0;
+        double losses = 0.0;
+        double home_wins = 0.0;
+        double home_draws = 0.0;
+        double home_losses = 0.0;
+        double away_wins = 0.0;
+        double away_draws = 0.0;
+        double away_losses = 0.0;
+        int total_goals_scored = 0;
+        int total_goals_conceded = 0;
+        
+        String[] results = matches.split(",");
+
+        for (int i = 0; i < results.length; i++) 
+        {
+            String[] game_score = results[i].split(" ");
+            if (game_score[0].equals("Barca")) 
+            {
+                total_goals_scored += Integer.parseInt(game_score[1]);
+                total_goals_conceded += Integer.parseInt(game_score[3]);
+                if (Integer.parseInt(game_score[1]) > Integer.parseInt(game_score[3])) 
+                {
+                    wins++;
+                    home_wins++;
+                } 
+                else if (Integer.parseInt(game_score[1]) == Integer.parseInt(game_score[3])) 
+                {
+                    draws++;
+                    home_draws++;
+                } 
+                else 
+                {
+                    losses++;
+                    home_losses++;
+                }
+            } 
+            else 
+            {
+                total_goals_scored += Integer.parseInt(game_score[3]);
+                total_goals_conceded += Integer.parseInt(game_score[1]);
+                if (Integer.parseInt(game_score[3]) > Integer.parseInt(game_score[1])) 
+                {
+                    wins++;
+                    away_wins++;
+                } 
+                else if (Integer.parseInt(game_score[3]) == Integer.parseInt(game_score[1])) 
+                {
+                    draws++;
+                    away_draws++;
+                } 
+                else 
+                {
+                    losses++;
+                    away_losses++;
+                }
+            }
+
+        }
+        System.out.println("Total Barca Wins: " + (int) wins);
+        System.out.println("Total Barca Draws: " + (int) draws);
+        System.out.println("Total Barca Losses: " + (int) losses);
+        System.out.println("Total Barca Scored Goals: " + total_goals_scored);
+        System.out.println("Total Barca Conceded Goals: " + total_goals_conceded);
+        System.out.println();
+
+        System.out.println("Barca home win percentage: " + (home_wins / wins) * 100);
+        System.out.println("Barca away win percentage: " + (away_wins / wins) * 100);
+        System.out.println();
+        System.out.println("Barca home draw percentage: " + (home_draws / draws) * 100);
+        System.out.println("Barca away draw percentage: " + (away_draws / draws) * 100);
+        System.out.println();
+        System.out.println("Barca home loss percentage: " + (home_losses / losses) * 100);
+        System.out.println("Barca away loss percentage: " + (away_losses / losses) * 100);
+    }
+}
