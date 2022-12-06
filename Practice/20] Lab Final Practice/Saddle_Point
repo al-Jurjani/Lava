@@ -1,0 +1,51 @@
+public class Saddle_Point
+{
+    public static void main(String[] args)
+    {
+        int[][] matrix = matrix_generation();
+        int outputs = 0;
+        for (int i = 0 ; i <= 2 ; i++)
+            for (int j = 0; j <= 2; j++)
+                if (row_saddle_point(matrix, i , j) == true && col_saddle_point(matrix, i, j) == true)
+                {
+                    System.out.printf("Saddle point, %d, found in row %d, column %d", matrix[i][j], i + 1, j + 1);
+                    outputs++;
+                }
+        if (outputs == 0)
+            System.out.println("No saddle points for the printed matrix could be found.");
+    }
+
+    public static int[][] matrix_generation()
+    {
+        int[][] matrix = new int[3][3];
+        for (int i = 0 ; i <= 2 ; i++)
+        {
+            for (int j = 0; j <= 2; j++)
+            {
+                matrix[i][j] = (int) (Math.random() * 101);
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+        return matrix;
+    }
+
+    public static boolean row_saddle_point (int[][] matrix, int row, int col)
+    {
+        int smallest = matrix[row][col];
+        for (int j = 0; j <= 2; j++)
+            if (matrix[row][j] < smallest)
+                return false;
+        return true;
+    }
+
+    public static boolean col_saddle_point (int[][] matrix, int row, int col)
+    {
+        int largest = matrix[row][col];
+        for (int i = 0; i <= 2; i++)
+            if (matrix[i][col] > largest)
+                return false;
+        return true;
+    }
+}
