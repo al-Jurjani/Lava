@@ -1,0 +1,41 @@
+public class BiggestNumber_in_array_recursively
+{
+        public static void main (String[] args)
+        {
+            int array[] = array_generation();
+            System.out.println("The largest of the digits in the array is: " + largest(array));
+        }
+
+        public static int[] array_generation ()
+        {
+            int[] array = new int[1 + (int)(Math.random() * 10)]; // arbitrary number of elements. Will work for any number.
+            for (int i = 0 ; i < array.length ; i++)
+            {
+                array[i] = 1 + (int)(Math.random() * 10); // arbitrary number in the index position i. Can be any positive number, maybe negative as well.
+                System.out.println(array[i]);
+            }
+            return array;
+        }
+
+        public static int largest (int[] array)
+        {
+            if (array.length == 1)
+                return array[0];
+            else if (array.length == 2)
+            {
+                if (array[0] >= array[1])
+                    return array[0];
+                else
+                    return array[1];
+            }
+            else
+            {
+                int[] copy = new int [array.length - 1];
+                System.arraycopy(array, 0, copy, 0, array.length - 1);
+                if (array[array.length - 1] >= largest(copy))
+                    return array[array.length - 1];
+                else
+                    return largest(copy);
+            }
+        }
+}
