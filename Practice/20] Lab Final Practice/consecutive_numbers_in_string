@@ -1,0 +1,36 @@
+import java.util.*;
+
+public class consecutive_numbers_in_string
+{
+    public static void main (String[] args)
+    {
+        String sentence = numbers();
+        System.out.println(con_nums(sentence));
+    }
+
+    public static String numbers ()
+    {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter a set of numbers please: ");
+        return input.nextLine();
+    }
+
+    public static String con_nums (String sentence)
+    {
+        String sout = "";
+        String[] numbers = sentence.split("-");
+        for (int i = 0 ; i < numbers.length ; i++)
+        {
+            try
+            {
+                if (Integer.parseInt(numbers[i]) == Integer.parseInt(numbers[i+1]) + 1 || Integer.parseInt(numbers[i]) == Integer.parseInt(numbers[i+1]) - 1
+            || Integer.parseInt(numbers[i]) == Integer.parseInt(numbers[i-1]) + 1 || Integer.parseInt(numbers[i]) == Integer.parseInt(numbers[i-1]) - 1)
+                    sout += numbers[i] + " ";
+                else
+                    break;
+            }
+            catch (Exception e) {}
+        }
+        return sout;
+    }
+}
