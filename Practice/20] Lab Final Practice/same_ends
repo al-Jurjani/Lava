@@ -36,7 +36,10 @@ public class Same_Ends
         {
             for (int j = eno.length() / 2; j < eno.length() ; j++)
                    if (eno.charAt(i) == eno.charAt(j))
+                   {
                        to_you += eno.charAt(i);
+                        break;
+                    }
         }
         return to_you;
     }
