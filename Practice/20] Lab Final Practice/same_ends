@@ -1,0 +1,43 @@
+import java.util.*;
+
+public class Same_Ends
+{
+    public static void main (String[] args)
+    {
+        String sword = user_input();
+        System.out.println(same_endz(sword));
+    }
+
+    public static String user_input ()
+    {
+        Scanner input = new Scanner(System.in);
+        String west = "";
+        boolean correct = false;
+        do
+            try
+            {
+                System.out.println("Enter a word or sentence: ");
+                west = input.nextLine();
+                correct = true;
+            }
+            catch (Exception e)
+            {
+                System.out.println("An error occurred! Please try again.");
+            }
+            while (!correct);
+        return west;
+    }
+
+    public static String same_endz (String eno)
+    {
+        String to_you = "";
+       
+        for (int i = 0; i < eno.length() / 2; i++)
+        {
+            for (int j = eno.length() / 2; j < eno.length() ; j++)
+                   if (eno.charAt(i) == eno.charAt(j))
+                       to_you += eno.charAt(i);
+        }
+        return to_you;
+    }
+}
